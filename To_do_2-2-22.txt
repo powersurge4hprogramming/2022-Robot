@@ -1,0 +1,4 @@
+Things to do:
+- Program the drive train
+- test the drive train code via simulation
+- Review drive train code and make improvements
