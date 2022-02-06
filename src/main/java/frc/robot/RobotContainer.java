@@ -18,11 +18,11 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  private final GenericHID m_driveJoystick = new GenericHID(Constants.DRIVER_JOYSTICK_PORT);
   private final Drivetrain m_drivetrain = new Drivetrain(Constants.FRONT_LEFT_MOTOR_CONTROL, Constants.FRONT_RIGHT_MOTOR_CONTROL, Constants.BACK_LEFT_MOTOR_CONTROL, Constants.BACK_RIGHT_MOTOR_CONTROL);
 
-  private final DriveCommand m_teleopCommand = new DriveCommand(m_drivetrain);
+  private final DriveCommand m_teleopCommand = new DriveCommand(m_drivetrain, m_driveJoystick);
 
-  private final GenericHID m_driveJoystick = new GenericHID(Constants.DRIVER_JOYSTICK_PORT);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
