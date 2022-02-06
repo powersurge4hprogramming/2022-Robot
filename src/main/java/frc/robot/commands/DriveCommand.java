@@ -4,12 +4,21 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Drivetrain;
 
 public class DriveCommand extends CommandBase {
+
+  private final Drivetrain drivetrain;
+  private final GenericHID driveJoystick;
+
   /** Creates a new DriveCommand. */
-  public DriveCommand() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  public DriveCommand(Drivetrain drivetrain, GenericHID driveJoystick) {
+      this.drivetrain= drivetrain;
+      this.driveJoystick = driveJoystick;
+      addRequirements(drivetrain);
+        // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -18,11 +27,17 @@ public class DriveCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+
+
+      drivetrain.drive(0, 0, 0);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    drivetrain.drive(0, 0, 0);
+  }
 
   // Returns true when the command should end.
   @Override

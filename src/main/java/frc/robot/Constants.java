@@ -18,6 +18,7 @@ public final class Constants {
     public static final int DRIVER_JOYSTICK_Y_AXIS = 1;
     public static final int DRIVER_JOYSTICK_Z_AXIS = 2;
     public static final int DRIVER_JOYSTICK_SCALE_AXIS = 3;
+    public static final int DRIVER_JOYSTICK_PORT = 0;
 
 
     public static final int FRONT_LEFT_MOTOR_CONTROL = 0;
