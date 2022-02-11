@@ -32,4 +32,7 @@ public final class Constants {
     public static final int BACK_LEFT_MOTOR_CONTROL = 2;
     public static final int BACK_RIGHT_MOTOR_CONTROL = 3;
 
+    public static final int intake = 4;
+
+    public static final int Intakebutton = 2;
 }
