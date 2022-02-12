@@ -12,11 +12,17 @@
       "/LiveWindow/Drivetrain": "Subsystem",
       "/LiveWindow/ExampleSubsystem": "Subsystem",
       "/LiveWindow/Intake": "Subsystem",
+      "/LiveWindow/Shooter": "Subsystem",
       "/LiveWindow/Ungrouped/MecanumDrive[1]": "MecanumDrive",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
     },
     "windows": {
       "/LiveWindow/Intake": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/LiveWindow/Shooter": {
         "window": {
           "visible": true
         }

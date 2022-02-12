@@ -9,8 +9,10 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.Intakecommand;
+import frc.robot.commands.Shootercommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -23,12 +25,14 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final GenericHID m_driveJoystick = new GenericHID(Constants.DRIVER_JOYSTICK_PORT);
+  private final GenericHID m_operatorJoystick = new GenericHID(Constants.OPERATOR_JOYSTICK_PORT);
   private final Drivetrain m_drivetrain = new Drivetrain(Constants.FRONT_LEFT_MOTOR_CONTROL, Constants.FRONT_RIGHT_MOTOR_CONTROL, Constants.BACK_LEFT_MOTOR_CONTROL, Constants.BACK_RIGHT_MOTOR_CONTROL);
+  private final Shooter m_shooter = new Shooter(Constants.Shooterport, Constants.servoport);
 
   private final Intake m_Intake = new Intake(Constants.intake);
 
   private final DriveCommand m_teleopCommand = new DriveCommand(m_drivetrain, m_driveJoystick);
-
+  private final Shootercommand m_shooterCommand = new Shootercommand(m_shooter, m_operatorJoystick);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -38,6 +42,7 @@ public class RobotContainer {
   
   public void teleopStart(){
     m_drivetrain.setDefaultCommand(m_teleopCommand);
+    m_shooter.setDefaultCommand(m_shooterCommand);
   }
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
@@ -46,12 +51,11 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-      new JoystickButton(m_driveJoystick, Constants.Intakebutton).whenHeld(new Intakecommand(m_Intake));
+      new JoystickButton(m_operatorJoystick, Constants.Intakebutton).whenHeld(new Intakecommand(m_Intake));
   }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {

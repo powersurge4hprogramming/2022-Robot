@@ -24,6 +24,7 @@ public final class Constants {
     public static final int DRIVER_JOYSTICK_SCALE_AXIS = 3;
 
     public static final int DRIVER_JOYSTICK_PORT = 0;
+    public static final int OPERATOR_JOYSTICK_PORT = 1;
     public static final double DRIVER_LATERAL_SLEW = 5;
     public static final double DRIVER_TWIST_SLEW = 5;
 
@@ -34,5 +35,10 @@ public final class Constants {
 
     public static final int intake = 4;
 
-    public static final int Intakebutton = 2;
+    public static final int Shooterport = 5;
+    public static final int servoport = 6;
+
+    public static final int Intakebutton = 3;
+
+    public static final int Shooteraxis = 3;
 }
