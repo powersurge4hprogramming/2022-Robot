@@ -34,9 +34,10 @@ public final class Constants {
         public static final boolean kFrontRightEncoderReversed = false;
         public static final boolean kRearRightEncoderReversed = true;
 
-        public static final double kTrackWidth = 0.5;
+        // TODO: Get these measurements
+        public static final double kTrackWidth = 0.586;
         // Distance between centers of right and left wheels on robot
-        public static final double kWheelBase = 0.7;
+        public static final double kWheelBase = 0.516;
         // Distance between centers of front and back wheels on robot
 
         public static final MecanumDriveKinematics kDriveKinematics = new MecanumDriveKinematics(
@@ -46,7 +47,7 @@ public final class Constants {
                 new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
         public static final int kEncoderCPR = 1024;
-        public static final double kWheelDiameterMeters = 0.15;
+        public static final double kWheelDiameterMeters = 0.0508;
         public static final double kEncoderDistancePerPulse =
                 // Assumes the encoders are directly mounted on the wheel shafts
                 (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
