@@ -29,28 +29,30 @@ public final class Constants {
         public static final int BACK_LEFT_MOTOR_CONTROL = 2;
         public static final int BACK_RIGHT_MOTOR_CONTROL = 3;
 
-        public static final boolean kFrontLeftEncoderReversed = false;
-        public static final boolean kRearLeftEncoderReversed = true;
-        public static final boolean kFrontRightEncoderReversed = false;
-        public static final boolean kRearRightEncoderReversed = true;
+        public static final boolean FL_ENCODER_REVERSED = false;
+        public static final boolean RL_ENCODER_REVERSED = true;
+        public static final boolean FR_ENCODER_REVERSED = false;
+        public static final boolean RR_ENCODER_REVERSED = true;
 
-        // TODO: Get these measurements
-        public static final double kTrackWidth = 0.586;
+        // DONE:
+        public static final double TRACK_WIDTH = 0.586;
         // Distance between centers of right and left wheels on robot
-        public static final double kWheelBase = 0.516;
+        public static final double WHEEL_BASE = 0.516;
         // Distance between centers of front and back wheels on robot
 
-        public static final MecanumDriveKinematics kDriveKinematics = new MecanumDriveKinematics(
-                new Translation2d(kWheelBase / 2, kTrackWidth / 2),
-                new Translation2d(kWheelBase / 2, -kTrackWidth / 2),
-                new Translation2d(-kWheelBase / 2, kTrackWidth / 2),
-                new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
+        public static final MecanumDriveKinematics DRIVE_KINEMATICS = new MecanumDriveKinematics(
+                new Translation2d(WHEEL_BASE / 2, TRACK_WIDTH / 2),
+                new Translation2d(WHEEL_BASE / 2, -TRACK_WIDTH / 2),
+                new Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2),
+                new Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2));
 
-        public static final int kEncoderCPR = 1024;
-        public static final double kWheelDiameterMeters = 0.0508;
-        public static final double kEncoderDistancePerPulse =
+        public static final int ENCODER_CPR = 1024;
+
+        // DONE:
+        public static final double WHEEL_DIAMETER_METERS = 0.0508;
+        public static final double ENCODER_DIST_PER_PULSE =
                 // Assumes the encoders are directly mounted on the wheel shafts
-                (kWheelDiameterMeters * Math.PI) / (double) kEncoderCPR;
+                (WHEEL_DIAMETER_METERS * Math.PI) / (double) ENCODER_CPR;
 
         // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
         // These characterization values MUST be determined either experimentally or
@@ -58,13 +60,13 @@ public final class Constants {
         // for *your* robot's drive.
         // The SysId tool provides a convenient method for obtaining these values for
         // your robot.
-        public static final SimpleMotorFeedforward kFeedforward = new SimpleMotorFeedforward(1, 0.8, 0.15);
+        public static final SimpleMotorFeedforward MOTOR_FEED_FORWARD = new SimpleMotorFeedforward(1, 0.8, 0.15);
 
         // Example value only - as above, this must be tuned for your drive!
-        public static final double kPFrontLeftVel = 0.5;
-        public static final double kPRearLeftVel = 0.5;
-        public static final double kPFrontRightVel = 0.5;
-        public static final double kPRearRightVel = 0.5;
+        public static final double FL_VELOCITY = 0.5;
+        public static final double RL_VELOCITY = 0.5;
+        public static final double FR_VELOCITY = 0.5;
+        public static final double RR_VELOCITY = 0.5;
     }
 
     public static final int DRIVER_JOYSTICK_X_AXIS = 0;
@@ -77,28 +79,29 @@ public final class Constants {
     public static final double DRIVER_LATERAL_SLEW = 5;
     public static final double DRIVER_TWIST_SLEW = 5;
 
-    public static final int intake = 4;
+    public static final int INTAKE = 4;
 
-    public static final int Shooterport = 5;
-    public static final int servoport = 6;
+    public static final int SHOOTER_PORT = 5;
+    public static final int SERVO_PORT = 6;
 
-    public static final int Intakebutton = 3;
+    public static final int INTAKE_BUTTON = 3;
+    public static final int MECH_AIM_BUTTON = 5;
 
-    public static final int Shooteraxis = 3;
+    public static final int SHOOTER_AXIS = 3;
 
     public final static class AutoConstants {
-        public static final double kMaxSpeedMetersPerSecond = 3;
-        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
-        public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
-        public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
+        public static final double MAX_SPEED_M_PER_SEC = 3;
+        public static final double MAX_ACCEL_M_PER_SEC_SQUARED = 3;
+        public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SEC = Math.PI;
+        public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SEC_SQUARED = Math.PI;
 
-        public static final double kPXController = 0.5;
-        public static final double kPYController = 0.5;
-        public static final double kPThetaController = 0.5;
+        public static final double PX_CONTROLLER = 0.5;
+        public static final double PY_CONTROLLER = 0.5;
+        public static final double P_THETA_CONTROLLER = 0.5;
 
         // Constraint for the motion profilied robot angle controller
-        public static final TrapezoidProfile.Constraints kThetaControllerConstraints = new TrapezoidProfile.Constraints(
-                kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
+        public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS = new TrapezoidProfile.Constraints(
+                MAX_ANGULAR_SPEED_RADIANS_PER_SEC, MAX_ANGULAR_SPEED_RADIANS_PER_SEC_SQUARED);
     }
 
 }
