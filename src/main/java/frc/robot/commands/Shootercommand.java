@@ -4,23 +4,20 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.subsystems.Shooter;
 
-/** An example command that uses an example subsystem. */
-public class ExampleCommand extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ExampleSubsystem m_subsystem;
+public class Shootercommand extends CommandBase {
+  private final Shooter shooter;
 
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  public ExampleCommand(ExampleSubsystem subsystem) {
-    m_subsystem = subsystem;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+  private final GenericHID controller;
+  /** Creates a new Shootercommand. */
+  public Shootercommand(Shooter shooter, GenericHID controller) {
+    this.shooter = shooter;
+    this.controller = controller;
+    addRequirements(this.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -29,11 +26,16 @@ public class ExampleCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+double shooterspeed = controller.getRawAxis(Constants.Shooteraxis);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    shooter.set(0f);
+    shooter.setactuator(0f);
+  }
 
   // Returns true when the command should end.
   @Override
