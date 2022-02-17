@@ -23,7 +23,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.MechAimCommand;
-import frc.robot.commands.Shootercommand;
+import frc.robot.commands.ShooterCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LimeVision;
@@ -56,7 +56,7 @@ public class RobotContainer {
   private final LimeVision limeVision = new LimeVision(m_limeTable);
 
   private final DriveCommand m_teleopCommand = new DriveCommand(m_drivetrain, m_driveJoystick);
-  private final Shootercommand m_shooterCommand = new Shootercommand(m_shooter, m_operatorJoystick);
+  private final ShooterCommand m_shooterCommand = new ShooterCommand(m_shooter, m_operatorJoystick);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.

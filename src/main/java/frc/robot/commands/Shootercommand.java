@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 
-public class Shootercommand extends CommandBase {
+public class ShooterCommand extends CommandBase {
   private final Shooter shooter;
 
   private final GenericHID controller;
   /** Creates a new Shootercommand. */
-  public Shootercommand(Shooter shooter, GenericHID controller) {
+  public ShooterCommand(Shooter shooter, GenericHID controller) {
     this.shooter = shooter;
     this.controller = controller;
     addRequirements(this.shooter);
