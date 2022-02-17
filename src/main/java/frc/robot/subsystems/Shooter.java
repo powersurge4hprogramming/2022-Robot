@@ -12,20 +12,20 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
-  private final CANSparkMax CANshooter;
+  private final CANSparkMax shooterMotor;
 
     private final Servo servo;
 
-  public Shooter (int shooterport, int linearactuatorport) {
-    CANshooter = new CANSparkMax(shooterport, MotorType.kBrushed);
-    servo = new Servo(linearactuatorport);
+  public Shooter (int shooterPort, int linearActuatorPort) {
+    shooterMotor = new CANSparkMax(shooterPort, MotorType.kBrushed);
+    servo = new Servo(linearActuatorPort);
   }
 
-  public void set(Float speed){
-    CANshooter.set(speed);
+  public void set(float speed){
+    shooterMotor.set(speed);
   }
 
-  public void setactuator(Float speed) {
+  public void setactuator(float speed) {
     servo.setSpeed(speed);
   }
 
