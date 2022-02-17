@@ -50,13 +50,13 @@ public class DriveCommand extends CommandBase {
     zAxis = zLimiter.calculate(MathU.squareInput(zAxis) * scale);
 
     // y x z
-    drivetrain.drive((float) yAxis, (float) xAxis, (float) zAxis);
+    drivetrain.drive((float) yAxis, (float) xAxis, (float) zAxis, false);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drivetrain.drive(0, 0, 0);
+    drivetrain.drive(0, 0, 0, false);
   }
 
   // Returns true when the command should end.
