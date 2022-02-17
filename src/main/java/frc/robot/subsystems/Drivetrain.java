@@ -46,7 +46,7 @@ public class Drivetrain extends SubsystemBase {
 
         gyro = new ADXRS450_Gyro();
 
-        mecanumDriveOdometry = new MecanumDriveOdometry(DriveConstants.kDriveKinematics, gyro.getRotation2d());
+        mecanumDriveOdometry = new MecanumDriveOdometry(DriveConstants.DRIVE_KINEMATICS, gyro.getRotation2d());
 
         mecanum = new MecanumDrive(frontLeftSpark, backLeftSpark, frontRightSpark, backRightSpark);
     }

@@ -10,13 +10,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
-  private final CANSparkMax CANintake;
+  private final CANSparkMax intakeMotor;
 
   public Intake(int intakeport) {
-    CANintake = new CANSparkMax(intakeport, MotorType.kBrushed);
+    intakeMotor = new CANSparkMax(intakeport, MotorType.kBrushed);
   }
 
-  public void set(Float speed){
-CANintake.set(speed);
+  public void set(float speed){
+intakeMotor.set(speed);
   }
 }
