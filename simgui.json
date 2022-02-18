@@ -1,5 +1,17 @@
 {
   "HALProvider": {
+    "Other Devices": {
+      "Talon FX[5]": {
+        "header": {
+          "open": true
+        }
+      }
+    },
+    "PWM Outputs": {
+      "window": {
+        "visible": true
+      }
+    },
     "RoboRIO": {
       "window": {
         "visible": true
@@ -12,6 +24,7 @@
       "/LiveWindow/Drivetrain": "Subsystem",
       "/LiveWindow/ExampleSubsystem": "Subsystem",
       "/LiveWindow/Intake": "Subsystem",
+      "/LiveWindow/LimeVision": "Subsystem",
       "/LiveWindow/Shooter": "Subsystem",
       "/LiveWindow/Ungrouped/ADXRS450_Gyro[0]": "Gyro",
       "/LiveWindow/Ungrouped/MecanumDrive[1]": "MecanumDrive",
@@ -29,7 +42,8 @@
       "/LiveWindow/Ungrouped/PIDController[7]": "PIDController",
       "/LiveWindow/Ungrouped/PIDController[8]": "PIDController",
       "/LiveWindow/Ungrouped/PIDController[9]": "PIDController",
-      "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/LiveWindow/Ungrouped/Talon FX [5]": "Motor Controller"
     },
     "windows": {
       "/LiveWindow/Drivetrain": {
@@ -48,6 +62,11 @@
         }
       },
       "/LiveWindow/Ungrouped/MecanumDrive[1]": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/LiveWindow/Ungrouped/Talon FX [5]": {
         "window": {
           "visible": true
         }

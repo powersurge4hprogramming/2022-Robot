@@ -5,19 +5,21 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
-  private final CANSparkMax shooterMotor;
+  private final WPI_TalonFX shooterMotor;
 
     private final Servo servo;
 
   public Shooter (int shooterPort, int linearActuatorPort) {
-    shooterMotor = new CANSparkMax(shooterPort, MotorType.kBrushed);
+    shooterMotor = new WPI_TalonFX(shooterPort);
     servo = new Servo(linearActuatorPort);
   }
 

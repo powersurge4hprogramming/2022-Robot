@@ -88,6 +88,8 @@ public final class Constants {
     public static final int MECH_AIM_BUTTON = 5;
 
     public static final int SHOOTER_AXIS = 3;
+    public static final int ACTUATOR_AXIS = 0;
+    public static final int ALT_ACTUATOR_AXIS = 5;
 
     public final static class AutoConstants {
         public static final double MAX_SPEED_M_PER_SEC = 3;
