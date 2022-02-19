@@ -29,11 +29,6 @@ public final class Constants {
         public static final int BACK_LEFT_MOTOR_CONTROL = 2;
         public static final int BACK_RIGHT_MOTOR_CONTROL = 3;
 
-        public static final boolean FL_ENCODER_REVERSED = false;
-        public static final boolean RL_ENCODER_REVERSED = true;
-        public static final boolean FR_ENCODER_REVERSED = false;
-        public static final boolean RR_ENCODER_REVERSED = true;
-
         // DONE:
         public static final double TRACK_WIDTH = 0.586;
         // Distance between centers of right and left wheels on robot
@@ -88,6 +83,13 @@ public final class Constants {
     public static final int MECH_AIM_BUTTON = 5;
 
     public static final int SHOOTER_AXIS = 3;
+    public static final int ACTUATOR_AXIS = 0;
+    public static final int ALT_ACTUATOR_AXIS = 5;
+    
+    public static final double VISION_PID_X = 1;
+    public static final double VISION_PID_I = 0;
+    public static final double VISION_PID_D = 0;
+    public static final double VISION_PID_TOLERANCE = 0.15;
 
     public final static class AutoConstants {
         public static final double MAX_SPEED_M_PER_SEC = 3;

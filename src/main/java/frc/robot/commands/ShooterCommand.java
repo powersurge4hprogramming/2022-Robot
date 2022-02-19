@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
+import frc.robot.utilities.MathU;
 
 public class ShooterCommand extends CommandBase {
   private final Shooter shooter;
@@ -27,9 +28,17 @@ public class ShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // TODO - Use the shooter speed
     double shooterSpeed = controller.getRawAxis(Constants.SHOOTER_AXIS);
-  }
+    shooter.set((float) shooterSpeed);
+
+    double actuatorspeed = controller.getRawAxis(Constants.ACTUATOR_AXIS);
+    actuatorspeed = MathU.squareInput(actuatorspeed);
+    if(Math.abs(actuatorspeed)<.01){
+      actuatorspeed = controller.getRawAxis(Constants.ALT_ACTUATOR_AXIS);    
+      actuatorspeed = MathU.squareInput(actuatorspeed);  
+      }
+    shooter.setactuator((float)actuatorspeed);
+    }
 
   // Called once the command ends or is interrupted.
   @Override
