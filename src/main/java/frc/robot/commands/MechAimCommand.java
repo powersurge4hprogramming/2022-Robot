@@ -24,7 +24,6 @@ public class MechAimCommand extends CommandBase {
 
     visionController = new PIDController(Constants.VISION_PID_X, Constants.VISION_PID_I, Constants.VISION_PID_D);
     addRequirements(vision, driveTrain);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -42,8 +41,9 @@ public class MechAimCommand extends CommandBase {
     // -27 to 27 is the range of the xOffset passed by the limelight
     xOffset = MathU.remap(-27, 27, -1, 1, xOffset);
     double z = visionController.calculate(xOffset);
-    
-    // TODO: Ensure you dont need to negate it, PID setpoint should take care of that
+
+    // TODO: Ensure you dont need to negate it, PID setpoint should take care of
+    // that
     driveTrain.drive(0f, 0f, (float) z, false);
   }
 

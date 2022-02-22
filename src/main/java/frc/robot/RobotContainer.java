@@ -18,8 +18,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.Constants.AutoConstants;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.MechAimCommand;
@@ -42,19 +40,22 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final GenericHID m_driveJoystick = new GenericHID(Constants.DRIVER_JOYSTICK_PORT);
-  private final GenericHID m_operatorJoystick = new GenericHID(Constants.OPERATOR_JOYSTICK_PORT);
-  private final Drivetrain m_drivetrain = new Drivetrain(DriveConstants.FRONT_LEFT_MOTOR_CONTROL,
-      DriveConstants.FRONT_RIGHT_MOTOR_CONTROL, DriveConstants.BACK_LEFT_MOTOR_CONTROL,
-      DriveConstants.BACK_RIGHT_MOTOR_CONTROL);
-  private final Shooter m_shooter = new Shooter(Constants.SHOOTER_PORT, Constants.SERVO_PORT);
+  // Input Devices
+  private final GenericHID m_driveJoystick = new GenericHID(Constants.InputConstants.DRIVER_JOYSTICK_PORT);
+  private final GenericHID m_operatorJoystick = new GenericHID(Constants.InputConstants.OPERATOR_JOYSTICK_PORT);
 
-  private final Intake m_Intake = new Intake(Constants.INTAKE);
-
+  // Limelight network table
   private final NetworkTable m_limeTable = NetworkTableInstance.getDefault().getTable("limelight");
+
+  // Subsystems
+  private final Drivetrain m_drivetrain = new Drivetrain(Constants.MotorConstants.FRONT_LEFT_MOTOR_CONTROL,
+      Constants.MotorConstants.FRONT_RIGHT_MOTOR_CONTROL, Constants.MotorConstants.BACK_LEFT_MOTOR_CONTROL,
+      Constants.MotorConstants.BACK_RIGHT_MOTOR_CONTROL);
+  private final Shooter m_shooter = new Shooter(Constants.MotorConstants.SHOOTER_PORT);
+  private final Intake m_Intake = new Intake(Constants.MotorConstants.INTAKE_PORT);
   private final LimeVision limeVision = new LimeVision(m_limeTable);
 
+  // Commands
   private final DriveCommand m_teleopCommand = new DriveCommand(m_drivetrain, m_driveJoystick);
   private final ShooterCommand m_shooterCommand = new ShooterCommand(m_shooter, m_operatorJoystick);
 
@@ -80,10 +81,10 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_operatorJoystick, Constants.INTAKE_BUTTON)
+    new JoystickButton(m_operatorJoystick, Constants.InputConstants.INTAKE_BUTTON)
         .whenHeld(new IntakeCommand(m_Intake));
 
-    new JoystickButton(m_operatorJoystick, Constants.MECH_AIM_BUTTON)
+    new JoystickButton(m_operatorJoystick, Constants.InputConstants.MECH_AIM_BUTTON)
         .whenHeld(new MechAimCommand(limeVision, m_drivetrain));
   }
 
@@ -95,10 +96,10 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // Create config for trajectory
     TrajectoryConfig config = new TrajectoryConfig(
-        AutoConstants.MAX_SPEED_M_PER_SEC,
-        AutoConstants.MAX_ACCEL_M_PER_SEC_SQUARED)
+        Constants.DriveConstants.MAX_SPEED_M_PER_SEC,
+        Constants.DriveConstants.MAX_ACCEL_M_PER_SEC_SQUARED)
             // Add kinematics to ensure max speed is actually obeyed
-            .setKinematics(DriveConstants.DRIVE_KINEMATICS);
+            .setKinematics(Constants.DriveConstants.DRIVE_KINEMATICS);
 
     // An example trajectory to follow. All units in meters.
     Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
@@ -113,23 +114,23 @@ public class RobotContainer {
     MecanumControllerCommand mecanumControllerCommand = new MecanumControllerCommand(
         exampleTrajectory,
         m_drivetrain::getPose,
-        DriveConstants.MOTOR_FEED_FORWARD,
-        DriveConstants.DRIVE_KINEMATICS,
+        Constants.DriveConstants.MOTOR_FEED_FORWARD,
+        Constants.DriveConstants.DRIVE_KINEMATICS,
 
         // Position contollers
-        new PIDController(AutoConstants.PX_CONTROLLER, 0, 0),
-        new PIDController(AutoConstants.PY_CONTROLLER, 0, 0),
+        new PIDController(Constants.DriveConstants.PX_CONTROLLER, 0, 0),
+        new PIDController(Constants.DriveConstants.PY_CONTROLLER, 0, 0),
         new ProfiledPIDController(
-            AutoConstants.P_THETA_CONTROLLER, 0, 0, AutoConstants.THETA_CONTROLLER_CONSTRAINTS),
+            Constants.DriveConstants.P_THETA_CONTROLLER, 0, 0, Constants.DriveConstants.THETA_CONTROLLER_CONSTRAINTS),
 
         // Needed for normalizing wheel speeds
-        AutoConstants.MAX_SPEED_M_PER_SEC,
+        Constants.DriveConstants.MAX_SPEED_M_PER_SEC,
 
         // Velocity PID's
-        new PIDController(DriveConstants.FL_VELOCITY, 0, 0),
-        new PIDController(DriveConstants.RL_VELOCITY, 0, 0),
-        new PIDController(DriveConstants.FR_VELOCITY, 0, 0),
-        new PIDController(DriveConstants.RR_VELOCITY, 0, 0),
+        new PIDController(Constants.DriveConstants.FL_VELOCITY, 0, 0),
+        new PIDController(Constants.DriveConstants.RL_VELOCITY, 0, 0),
+        new PIDController(Constants.DriveConstants.FR_VELOCITY, 0, 0),
+        new PIDController(Constants.DriveConstants.RR_VELOCITY, 0, 0),
         m_drivetrain::getCurrentWheelSpeeds,
         m_drivetrain::setDriveMotorControllersVolts, // Consumer for the output motor voltages
         m_drivetrain);

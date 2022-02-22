@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
-    private final MecanumDrive mecanum;
+    private final MecanumDrive mecanumDrive;
 
     private final RelativeEncoder frontLeftEncoder;
     private final RelativeEncoder frontRightEncoder;
@@ -46,16 +46,16 @@ public class Drivetrain extends SubsystemBase {
 
         gyro = new ADXRS450_Gyro();
 
-        mecanumDriveOdometry = new MecanumDriveOdometry(DriveConstants.DRIVE_KINEMATICS, gyro.getRotation2d());
+        mecanumDriveOdometry = new MecanumDriveOdometry(Constants.DriveConstants.DRIVE_KINEMATICS, gyro.getRotation2d());
 
-        mecanum = new MecanumDrive(frontLeftSpark, backLeftSpark, frontRightSpark, backRightSpark);
+        mecanumDrive = new MecanumDrive(frontLeftSpark, backLeftSpark, frontRightSpark, backRightSpark);
     }
 
     public void drive(float ySpeed, float xSpeed, float zRotation, boolean fieldRelative) {
         if (fieldRelative) {
-            mecanum.driveCartesian(ySpeed, xSpeed, zRotation, -gyro.getAngle());
+            mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation, -gyro.getAngle());
         } else {
-            mecanum.driveCartesian(ySpeed, xSpeed, zRotation);
+            mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation);
         }
     }
 

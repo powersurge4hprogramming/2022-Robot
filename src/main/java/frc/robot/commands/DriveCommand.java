@@ -23,9 +23,9 @@ public class DriveCommand extends CommandBase {
   public DriveCommand(Drivetrain drivetrain, GenericHID driveJoystick) {
     this.drivetrain = drivetrain;
     this.driveJoystick = driveJoystick;
-    yLimiter = new SlewRateLimiter(Constants.DRIVER_LATERAL_SLEW);
-    xLimiter = new SlewRateLimiter(Constants.DRIVER_LATERAL_SLEW);
-    zLimiter = new SlewRateLimiter(Constants.DRIVER_TWIST_SLEW);
+    yLimiter = new SlewRateLimiter(Constants.InputConstants.DRIVER_LATERAL_SLEW);
+    xLimiter = new SlewRateLimiter(Constants.InputConstants.DRIVER_LATERAL_SLEW);
+    zLimiter = new SlewRateLimiter(Constants.InputConstants.DRIVER_TWIST_SLEW);
     addRequirements(drivetrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -38,11 +38,11 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double xAxis = driveJoystick.getRawAxis(Constants.DRIVER_JOYSTICK_X_AXIS);
-    double yAxis = -driveJoystick.getRawAxis(Constants.DRIVER_JOYSTICK_Y_AXIS);
-    double zAxis = driveJoystick.getRawAxis(Constants.DRIVER_JOYSTICK_Z_AXIS);
+    double xAxis = driveJoystick.getRawAxis(Constants.InputConstants.DRIVER_JOYSTICK_X_AXIS);
+    double yAxis = -driveJoystick.getRawAxis(Constants.InputConstants.DRIVER_JOYSTICK_Y_AXIS);
+    double zAxis = driveJoystick.getRawAxis(Constants.InputConstants.DRIVER_JOYSTICK_Z_AXIS);
 
-    double scale = driveJoystick.getRawAxis(Constants.DRIVER_JOYSTICK_SCALE_AXIS);
+    double scale = driveJoystick.getRawAxis(Constants.InputConstants.DRIVER_JOYSTICK_SCALE_AXIS);
     scale = (1 - scale) / 2;
 
     xAxis = xLimiter.calculate(MathU.squareInput(xAxis) * scale);

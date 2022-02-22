@@ -16,7 +16,7 @@ public class Intake extends SubsystemBase {
     intakeMotor = new CANSparkMax(intakeport, MotorType.kBrushed);
   }
 
-  public void set(float speed){
-intakeMotor.set(speed);
+  public void set(float speed) {
+    intakeMotor.set(speed);
   }
 }
