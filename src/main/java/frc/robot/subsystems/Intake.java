@@ -11,12 +11,15 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
   private final CANSparkMax intakeMotor;
+  private final CANSparkMax troughMotor;
 
-  public Intake(int intakeport) {
-    intakeMotor = new CANSparkMax(intakeport, MotorType.kBrushed);
+  public Intake(int intakePort, int troughPort) {
+    intakeMotor = new CANSparkMax(intakePort, MotorType.kBrushed);
+    troughMotor = new CANSparkMax(troughPort,MotorType.kBrushed);
   }
 
   public void set(float speed) {
     intakeMotor.set(speed);
+    troughMotor.set(speed);
   }
 }

@@ -19,10 +19,12 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.GatekeeperCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.MechAimCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Gatekeeper;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LimeVision;
 import frc.robot.subsystems.Shooter;
@@ -52,12 +54,14 @@ public class RobotContainer {
       Constants.MotorConstants.FRONT_RIGHT_MOTOR_CONTROL, Constants.MotorConstants.BACK_LEFT_MOTOR_CONTROL,
       Constants.MotorConstants.BACK_RIGHT_MOTOR_CONTROL);
   private final Shooter m_shooter = new Shooter(Constants.MotorConstants.SHOOTER_PORT);
-  private final Intake m_Intake = new Intake(Constants.MotorConstants.INTAKE_PORT);
-  private final LimeVision limeVision = new LimeVision(m_limeTable);
+  private final Intake m_Intake = new Intake(Constants.MotorConstants.INTAKE_PORT,
+      Constants.MotorConstants.TROUGH_PORT);
+  private final LimeVision m_limeVision = new LimeVision(m_limeTable);
+  private final Gatekeeper m_gatekeeper = new Gatekeeper(Constants.MotorConstants.GATEKEEPER_PORT);
 
   // Commands
   private final DriveCommand m_teleopCommand = new DriveCommand(m_drivetrain, m_driveJoystick);
-  private final ShooterCommand m_shooterCommand = new ShooterCommand(m_shooter, m_operatorJoystick);
+  private final ShooterCommand m_shooterCommand = new ShooterCommand(m_shooter);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -85,7 +89,11 @@ public class RobotContainer {
         .whenHeld(new IntakeCommand(m_Intake));
 
     new JoystickButton(m_operatorJoystick, Constants.InputConstants.MECH_AIM_BUTTON)
-        .whenHeld(new MechAimCommand(limeVision, m_drivetrain));
+        .whenHeld(new MechAimCommand(m_limeVision, m_drivetrain));
+
+    new JoystickButton(m_operatorJoystick, Constants.InputConstants.GATEKEEPER_ALLOW_BUTTON)
+        .whenPressed(
+            new GatekeeperCommand(m_gatekeeper).withTimeout(Constants.BehaviorConstants.GATEKEEPER_ALLOW_TIME));
   }
 
   /**

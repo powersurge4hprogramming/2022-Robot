@@ -86,7 +86,13 @@ public final class Constants {
 
         public static final int INTAKE_PORT = 4;
         public static final int SHOOTER_PORT = 5;
+        public static final int TROUGH_PORT = 6;
+        public static final int GATEKEEPER_PORT = 7;
 
+    }
+
+    public final static class BehaviorConstants {
+        public static final double GATEKEEPER_ALLOW_TIME = 5.0;
     }
 
     public final static class InputConstants {
@@ -105,7 +111,7 @@ public final class Constants {
         public static final int INTAKE_BUTTON = 3;
         public static final int MECH_AIM_BUTTON = 5;
 
-        public static final int SHOOTER_AXIS = 3;
+        public static final int GATEKEEPER_ALLOW_BUTTON = 2;
 
     }
 
