@@ -23,6 +23,7 @@
       "/FMSInfo": "FMSInfo",
       "/LiveWindow/Drivetrain": "Subsystem",
       "/LiveWindow/ExampleSubsystem": "Subsystem",
+      "/LiveWindow/Gatekeeper": "Subsystem",
       "/LiveWindow/Intake": "Subsystem",
       "/LiveWindow/LimeVision": "Subsystem",
       "/LiveWindow/Shooter": "Subsystem",

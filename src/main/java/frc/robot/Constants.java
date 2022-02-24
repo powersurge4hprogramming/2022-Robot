@@ -24,11 +24,6 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 public final class Constants {
     public static final class DriveConstants {
 
-        public static final int FRONT_LEFT_MOTOR_CONTROL = 0;
-        public static final int FRONT_RIGHT_MOTOR_CONTROL = 1;
-        public static final int BACK_LEFT_MOTOR_CONTROL = 2;
-        public static final int BACK_RIGHT_MOTOR_CONTROL = 3;
-
         // DONE:
         public static final double TRACK_WIDTH = 0.586;
         // Distance between centers of right and left wheels on robot
@@ -62,36 +57,7 @@ public final class Constants {
         public static final double RL_VELOCITY = 0.5;
         public static final double FR_VELOCITY = 0.5;
         public static final double RR_VELOCITY = 0.5;
-    }
 
-    public static final int DRIVER_JOYSTICK_X_AXIS = 0;
-    public static final int DRIVER_JOYSTICK_Y_AXIS = 1;
-    public static final int DRIVER_JOYSTICK_Z_AXIS = 2;
-    public static final int DRIVER_JOYSTICK_SCALE_AXIS = 3;
-
-    public static final int DRIVER_JOYSTICK_PORT = 0;
-    public static final int OPERATOR_JOYSTICK_PORT = 1;
-    public static final double DRIVER_LATERAL_SLEW = 5;
-    public static final double DRIVER_TWIST_SLEW = 5;
-
-    public static final int INTAKE = 4;
-
-    public static final int SHOOTER_PORT = 5;
-    public static final int SERVO_PORT = 6;
-
-    public static final int INTAKE_BUTTON = 3;
-    public static final int MECH_AIM_BUTTON = 5;
-
-    public static final int SHOOTER_AXIS = 3;
-    public static final int ACTUATOR_AXIS = 0;
-    public static final int ALT_ACTUATOR_AXIS = 5;
-    
-    public static final double VISION_PID_X = 1;
-    public static final double VISION_PID_I = 0;
-    public static final double VISION_PID_D = 0;
-    public static final double VISION_PID_TOLERANCE = 0.15;
-
-    public final static class AutoConstants {
         public static final double MAX_SPEED_M_PER_SEC = 3;
         public static final double MAX_ACCEL_M_PER_SEC_SQUARED = 3;
         public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SEC = Math.PI;
@@ -104,6 +70,49 @@ public final class Constants {
         // Constraint for the motion profilied robot angle controller
         public static final TrapezoidProfile.Constraints THETA_CONTROLLER_CONSTRAINTS = new TrapezoidProfile.Constraints(
                 MAX_ANGULAR_SPEED_RADIANS_PER_SEC, MAX_ANGULAR_SPEED_RADIANS_PER_SEC_SQUARED);
+    }
+
+    public static final double VISION_PID_X = 1;
+    public static final double VISION_PID_I = 0;
+    public static final double VISION_PID_D = 0;
+    public static final double VISION_PID_TOLERANCE = 0.15;
+
+    public final static class MotorConstants {
+
+        public static final int FRONT_LEFT_MOTOR_CONTROL = 0;
+        public static final int FRONT_RIGHT_MOTOR_CONTROL = 1;
+        public static final int BACK_LEFT_MOTOR_CONTROL = 2;
+        public static final int BACK_RIGHT_MOTOR_CONTROL = 3;
+
+        public static final int INTAKE_PORT = 4;
+        public static final int SHOOTER_PORT = 5;
+        public static final int TROUGH_PORT = 6;
+        public static final int GATEKEEPER_PORT = 7;
+
+    }
+
+    public final static class BehaviorConstants {
+        public static final double GATEKEEPER_ALLOW_TIME = 5.0;
+    }
+
+    public final static class InputConstants {
+
+        public static final int DRIVER_JOYSTICK_PORT = 0;
+        public static final int OPERATOR_JOYSTICK_PORT = 1;
+
+        public static final int DRIVER_JOYSTICK_X_AXIS = 0;
+        public static final int DRIVER_JOYSTICK_Y_AXIS = 1;
+        public static final int DRIVER_JOYSTICK_Z_AXIS = 2;
+        public static final int DRIVER_JOYSTICK_SCALE_AXIS = 3;
+
+        public static final double DRIVER_LATERAL_SLEW = 5;
+        public static final double DRIVER_TWIST_SLEW = 5;
+
+        public static final int INTAKE_BUTTON = 3;
+        public static final int MECH_AIM_BUTTON = 5;
+
+        public static final int GATEKEEPER_ALLOW_BUTTON = 2;
+
     }
 
 }
