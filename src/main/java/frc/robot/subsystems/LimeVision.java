@@ -34,6 +34,28 @@ public class LimeVision extends SubsystemBase {
     // This method will be called once per scheduler run
 
     SmartDashboard.putBoolean("Vision On", (tv.getDouble(0.0) == 1.0));
+
+    if (getTracking()) {
+      // All measurements in METERS and RADIANS -  see https://docs.limelightvision.io/en/latest/cs_estimating_distance.html
+
+      // Limelight height off of ground, TODO
+      double h1 = 1.016;
+
+      // Upper Hub height off of ground, DONE
+      double h2 = 2.64;
+
+      // Limelight mounted angle from horizontal, TODO
+      double a1 = Math.toRadians(0);
+
+      // Limelight angle from mounted to target
+      double a2 = Math.toRadians(getYOffsetAngle());
+
+      double d = (h2-h1) / Math.tan(a1+a2);
+
+      SmartDashboard.putNumber("Target Distance", d);
+    } else {
+      SmartDashboard.putNumber("Target Distance", 0.0);
+    }
   }
 
   public double getledMode() {
