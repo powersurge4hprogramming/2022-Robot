@@ -14,8 +14,6 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ClimbCommand;
@@ -28,7 +26,6 @@ import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Gatekeeper;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.LimeVision;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
@@ -48,9 +45,6 @@ public class RobotContainer {
   private final GenericHID m_driveJoystick = new GenericHID(Constants.InputConstants.DRIVER_JOYSTICK_PORT);
   private final GenericHID m_operatorJoystick = new GenericHID(Constants.InputConstants.OPERATOR_JOYSTICK_PORT);
 
-  // Limelight network table
-  private final NetworkTable m_limeTable = NetworkTableInstance.getDefault().getTable("limelight");
-
   // Subsystems
   private final Drivetrain m_drivetrain = new Drivetrain(Constants.MotorConstants.FRONT_LEFT_MOTOR_CONTROL,
       Constants.MotorConstants.FRONT_RIGHT_MOTOR_CONTROL, Constants.MotorConstants.BACK_LEFT_MOTOR_CONTROL,
@@ -58,7 +52,6 @@ public class RobotContainer {
   private final Shooter m_shooter = new Shooter(Constants.MotorConstants.SHOOTER_PORT);
   private final Intake m_Intake = new Intake(Constants.MotorConstants.INTAKE_PORT,
       Constants.MotorConstants.TROUGH_PORT);
-  private final LimeVision m_limeVision = new LimeVision(m_limeTable);
   private final Gatekeeper m_gatekeeper = new Gatekeeper(Constants.MotorConstants.GATEKEEPER_PORT);
   private final Climber m_climber = new Climber(Constants.MotorConstants.CLIMBER_PORT,
       Constants.MotorConstants.RELEASE_MOTOR_PORT);
@@ -93,7 +86,7 @@ public class RobotContainer {
         .whenHeld(new IntakeCommand(m_Intake));
 
     new JoystickButton(m_operatorJoystick, Constants.InputConstants.MECH_AIM_BUTTON)
-        .whenHeld(new MechAimCommand(m_limeVision, m_drivetrain));
+        .whenHeld(new MechAimCommand(m_drivetrain));
 
     new JoystickButton(m_operatorJoystick, Constants.InputConstants.GATEKEEPER_ALLOW_BUTTON)
         .whenPressed(
