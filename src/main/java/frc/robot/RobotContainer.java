@@ -18,11 +18,13 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.GatekeeperCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.MechAimCommand;
 import frc.robot.commands.ShooterCommand;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Gatekeeper;
 import frc.robot.subsystems.Intake;
@@ -58,6 +60,8 @@ public class RobotContainer {
       Constants.MotorConstants.TROUGH_PORT);
   private final LimeVision m_limeVision = new LimeVision(m_limeTable);
   private final Gatekeeper m_gatekeeper = new Gatekeeper(Constants.MotorConstants.GATEKEEPER_PORT);
+  private final Climber m_climber = new Climber(Constants.MotorConstants.CLIMBER_PORT,
+      Constants.MotorConstants.RELEASE_MOTOR_PORT);
 
   // Commands
   private final DriveCommand m_teleopCommand = new DriveCommand(m_drivetrain, m_driveJoystick);
@@ -94,6 +98,8 @@ public class RobotContainer {
     new JoystickButton(m_operatorJoystick, Constants.InputConstants.GATEKEEPER_ALLOW_BUTTON)
         .whenPressed(
             new GatekeeperCommand(m_gatekeeper).withTimeout(Constants.BehaviorConstants.GATEKEEPER_ALLOW_TIME));
+
+    new JoystickButton(m_operatorJoystick, Constants.InputConstants.CLIMB_BUTTON).whenHeld(new ClimbCommand(m_climber));
   }
 
   /**
