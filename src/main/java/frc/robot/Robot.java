@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -36,7 +37,13 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     // Initialize the Camera server for shuffleboard usage
-    CameraServer.startAutomaticCapture();
+    UsbCamera cam0 = CameraServer.startAutomaticCapture(0);
+    cam0.setResolution(160, 120);
+    cam0.setFPS(20);
+
+    UsbCamera cam1 = CameraServer.startAutomaticCapture(1);
+    cam1.setResolution(160, 120);
+    cam1.setFPS(20);
   }
 
   /**
