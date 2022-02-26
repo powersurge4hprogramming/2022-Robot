@@ -55,6 +55,7 @@ public class MechAimCommand extends CommandBase {
   @Override
   public boolean isFinished() {
 
-    return !LimeVision.getTracking();
+  //  return visionController.atSetpoint();
+  return false;
   }
 }
