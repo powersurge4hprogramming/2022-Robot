@@ -6,16 +6,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.data_structs.LimeVision;
 
-public class ShooterCommand extends CommandBase {
+public class LimeReader extends CommandBase {
 
-  private final Shooter shooter;
+  /** Creates a new LimeReader. */
+  public LimeReader() {
 
-  /** Creates a new Shootercommand. */
-  public ShooterCommand(Shooter shooter) {
-    this.shooter = shooter;
-    addRequirements(this.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -26,15 +23,21 @@ public class ShooterCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double shooterSpeed = SmartDashboard.getNumber("Shooter Speed", 0.0);
-    shooter.set((float) shooterSpeed);
-    SmartDashboard.putNumber("Shooter Speed", shooterSpeed);
+
+    SmartDashboard.putBoolean("Vision On", (LimeVision.getTv() == 1.0));
+
+    if (LimeVision.getTracking()) {
+      SmartDashboard.putNumber("Target Distance", LimeVision.targetDistance());
+    } else {
+      SmartDashboard.putNumber("Target Distance", -1.0);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.set(0f);
+    SmartDashboard.putBoolean("Vision On", false);
+    SmartDashboard.putNumber("Target Distance", -1.0);
   }
 
   // Returns true when the command should end.

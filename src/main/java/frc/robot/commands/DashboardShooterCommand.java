@@ -4,17 +4,18 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 
-public class IntakeCommand extends CommandBase {
-  private final Intake intakeSubsystem;
+public class DashboardShooterCommand extends CommandBase {
 
-  /** Creates a new Intakecommand. */
+  private final Shooter shooter;
 
-  public IntakeCommand(Intake intake) {
-    intakeSubsystem = intake;
-    addRequirements(intakeSubsystem);
+  /** Creates a new Shootercommand. */
+  public DashboardShooterCommand(Shooter shooter) {
+    this.shooter = shooter;
+    addRequirements(this.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -25,13 +26,15 @@ public class IntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intakeSubsystem.set(1.0);
+    double shooterSpeed = SmartDashboard.getNumber("Shooter Speed", 0.0);
+    shooter.set(shooterSpeed);
+    SmartDashboard.putNumber("Shooter Speed", shooterSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intakeSubsystem.set(0.0);
+    shooter.set(0.0);
   }
 
   // Returns true when the command should end.

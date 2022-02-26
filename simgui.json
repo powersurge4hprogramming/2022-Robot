@@ -21,6 +21,7 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Climber": "Subsystem",
       "/LiveWindow/Drivetrain": "Subsystem",
       "/LiveWindow/ExampleSubsystem": "Subsystem",
       "/LiveWindow/Gatekeeper": "Subsystem",
@@ -44,10 +45,17 @@
       "/LiveWindow/Ungrouped/PIDController[8]": "PIDController",
       "/LiveWindow/Ungrouped/PIDController[9]": "PIDController",
       "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
-      "/LiveWindow/Ungrouped/Talon FX [5]": "Motor Controller"
+      "/LiveWindow/Ungrouped/Talon FX [5]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Talon FX [8]": "Motor Controller",
+      "/SmartDashboard/Mecanum Drive": "MecanumDrive"
     },
     "windows": {
       "/LiveWindow/Drivetrain": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/LiveWindow/Gatekeeper": {
         "window": {
           "visible": true
         }
@@ -78,7 +86,11 @@
     "LiveWindow": {
       "ExampleSubsystem": {
         "open": true
-      }
+      },
+      "Gatekeeper": {
+        "open": true
+      },
+      "open": true
     }
   }
 }

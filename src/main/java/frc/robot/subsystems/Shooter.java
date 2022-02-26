@@ -15,7 +15,7 @@ public class Shooter extends SubsystemBase {
     shooterMotor = new WPI_TalonFX(shooterPort);
   }
 
-  public void set(float speed) {
+  public void set(double speed) {
     shooterMotor.set(speed);
   }
 
