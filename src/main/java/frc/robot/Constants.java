@@ -89,6 +89,9 @@ public final class Constants {
         public static final int TROUGH_PORT = 6;
         public static final int GATEKEEPER_PORT = 7;
 
+        public static final int CLIMBER_PORT = 8;
+        public static final int RELEASE_MOTOR_PORT = 9;
+
     }
 
     public final static class BehaviorConstants {
@@ -112,6 +115,8 @@ public final class Constants {
         public static final int MECH_AIM_BUTTON = 5;
 
         public static final int GATEKEEPER_ALLOW_BUTTON = 2;
+
+        public static final int CLIMB_BUTTON = 11;
 
     }
 
