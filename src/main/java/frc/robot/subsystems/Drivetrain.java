@@ -11,6 +11,7 @@ import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -45,8 +46,10 @@ public class Drivetrain extends SubsystemBase {
         backRightEncoder = backRightSpark.getEncoder();
 
         gyro = new ADXRS450_Gyro();
+        gyro.calibrate();
 
-        mecanumDriveOdometry = new MecanumDriveOdometry(Constants.DriveConstants.DRIVE_KINEMATICS, gyro.getRotation2d());
+        mecanumDriveOdometry = new MecanumDriveOdometry(Constants.DriveConstants.DRIVE_KINEMATICS,
+                gyro.getRotation2d());
 
         mecanumDrive = new MecanumDrive(frontLeftSpark, backLeftSpark, frontRightSpark, backRightSpark);
     }
@@ -62,6 +65,12 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         mecanumDriveOdometry.update(gyro.getRotation2d(), getCurrentWheelSpeeds());
+        SmartDashboard.putData("Mecanum Drive", mecanumDrive);
+        SmartDashboard.putNumber("Front Left Encoder", frontLeftEncoder.getPosition());
+        SmartDashboard.putNumber("Front Right Encoder", frontRightEncoder.getPosition());
+        SmartDashboard.putNumber("Back Left Encoder", backLeftEncoder.getPosition());
+        SmartDashboard.putNumber("Back Right Encoder", backRightEncoder.getPosition());
+        SmartDashboard.putNumber("Gyro", gyro.getAngle());
     }
 
     public Pose2d getPose() {
@@ -70,6 +79,10 @@ public class Drivetrain extends SubsystemBase {
 
     public void resetOdometry(Pose2d pose) {
         mecanumDriveOdometry.resetPosition(pose, gyro.getRotation2d());
+        frontLeftEncoder.setPosition(0);
+        frontRightEncoder.setPosition(0);
+        backLeftEncoder.setPosition(0);
+        backRightEncoder.setPosition(0);
     }
 
     public void setDriveMotorControllersVolts(MecanumDriveMotorVoltages volts) {
