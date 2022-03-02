@@ -120,14 +120,13 @@ public class RobotContainer {
                                                 // Add kinematics to ensure max speed is actually obeyed
                                                 .setKinematics(Constants.DriveConstants.DRIVE_KINEMATICS);
 
-                // An example trajectory to follow. All units in meters.
                 Trajectory mechTrajectory1 = TrajectoryGenerator.generateTrajectory(
                                 // Start at the origin facing the +X direction
                                 new Pose2d(0, 0, new Rotation2d(0)),
                                 // Pass through these two interior waypoints, making an 's' curve path
-                                List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-                                // End 3 meters straight ahead of where we started, facing forward
-                                new Pose2d(3, 0, new Rotation2d(0)),
+                                List.of(),
+                                // End 1.03 meters backwards ahead of where we started, facing forward
+                                new Pose2d(1.03, 0, Rotation2d.fromDegrees(180)),
                                 config);
 
                 Trajectory mechTrajectory2 = TrajectoryGenerator.generateTrajectory(
@@ -192,17 +191,19 @@ public class RobotContainer {
                 // Reset odometry to the starting pose of the trajectory.
                 m_drivetrain.resetOdometry(mechTrajectory1.getInitialPose());
 
-                SequentialCommandGroup auto1 = new SequentialCommandGroup(
-                                new ParallelRaceGroup(new IntakeCommand(m_Intake),
-                                                mechMove1.andThen(() -> m_drivetrain.drive(0, 0, 0, false))),
-                                new ParallelRaceGroup(new MechAimCommand(m_drivetrain)
-                                                .andThen(new GatekeeperCommand(m_gatekeeper).withTimeout(
-                                                                Constants.BehaviorConstants.GATEKEEPER_ALLOW_TIME)),
-                                                new VisionShooterCommand(m_shooter)),
-                                new ParallelRaceGroup(new IntakeCommand(m_Intake), mechMove2
-                                                .andThen(() -> m_drivetrain.drive(0, 0, 0, false)))
+                ParallelRaceGroup auto1 = new ParallelRaceGroup(
+                                new IntakeCommand(m_Intake),
+                                new SequentialCommandGroup(
+                                                mechMove1.andThen(() -> m_drivetrain.drive(0, 0, 0, false)),
+                                                new ParallelRaceGroup(new MechAimCommand(m_drivetrain)
+                                                                .andThen(new GatekeeperCommand(m_gatekeeper)
+                                                                                .withTimeout(
+                                                                                                Constants.BehaviorConstants.GATEKEEPER_ALLOW_TIME
+                                                                                                                * 2)),
+                                                                new VisionShooterCommand(m_shooter)),
+                                                mechMove2.andThen(() -> m_drivetrain.drive(0, 0, 0, false))
 
-                );
+                                ));
                 // Run path following command, then stop at the end.
                 return auto1;
         }
