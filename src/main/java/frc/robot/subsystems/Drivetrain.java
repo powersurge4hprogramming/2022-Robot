@@ -52,7 +52,6 @@ public class Drivetrain extends SubsystemBase {
         backLeftEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
         backRightEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
 
-        
         gyro = new ADXRS450_Gyro();
         gyro.calibrate();
 
@@ -63,7 +62,7 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void drive(float ySpeed, float xSpeed, float zRotation, boolean fieldRelative) {
-       if (fieldRelative) {
+        if (fieldRelative) {
             mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation, -gyro.getAngle());
         } else {
             mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation);

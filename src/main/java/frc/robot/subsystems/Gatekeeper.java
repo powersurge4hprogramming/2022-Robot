@@ -13,6 +13,7 @@ public class Gatekeeper extends SubsystemBase {
 
   public Gatekeeper(int gatekeeperPort) {
     gatekeeperMotor = new CANSparkMax(gatekeeperPort, MotorType.kBrushed);
+    gatekeeperMotor.setInverted(true);
   }
 
   @Override
@@ -20,6 +21,6 @@ public class Gatekeeper extends SubsystemBase {
   }
 
   public void set(double speed) {
-    gatekeeperMotor.set(speed*-1);
+    gatekeeperMotor.set(speed);
   }
 }

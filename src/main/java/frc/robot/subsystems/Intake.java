@@ -16,10 +16,11 @@ public class Intake extends SubsystemBase {
   public Intake(int intakePort, int troughPort) {
     intakeMotor = new CANSparkMax(intakePort, MotorType.kBrushed);
     troughMotor = new CANSparkMax(troughPort, MotorType.kBrushed);
+    troughMotor.setInverted(true);
   }
 
   public void set(double speed) {
     intakeMotor.set(speed);
-    troughMotor.set(speed*-1);
+    troughMotor.set(speed);
   }
 }
