@@ -20,6 +20,6 @@ public class Gatekeeper extends SubsystemBase {
   }
 
   public void set(double speed) {
-    gatekeeperMotor.set(speed);
+    gatekeeperMotor.set(speed*-1);
   }
 }

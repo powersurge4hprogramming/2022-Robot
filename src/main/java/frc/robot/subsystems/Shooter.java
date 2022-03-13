@@ -13,6 +13,7 @@ public class Shooter extends SubsystemBase {
 
   public Shooter(int shooterPort) {
     shooterMotor = new WPI_TalonFX(shooterPort);
+    shooterMotor.setInverted(true);
   }
 
   public void set(double speed) {

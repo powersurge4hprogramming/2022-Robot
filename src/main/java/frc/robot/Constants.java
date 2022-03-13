@@ -36,13 +36,8 @@ public final class Constants {
                 new Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2),
                 new Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2));
 
-        public static final int ENCODER_CPR = 1024;
-
-        // DONE:
-        public static final double WHEEL_DIAMETER_METERS = 0.0508;
-        public static final double ENCODER_DIST_PER_PULSE =
-                // Assumes the encoders are directly mounted on the wheel shafts
-                (WHEEL_DIAMETER_METERS * Math.PI) / (double) ENCODER_CPR;
+        // TODO
+        public static final double DIST_PER_COUNT_NEO = (0.1524*Math.PI/8.357);
 
         // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
         // These characterization values MUST be determined either experimentally or
@@ -79,14 +74,15 @@ public final class Constants {
 
     public final static class MotorConstants {
 
-        public static final int FRONT_LEFT_MOTOR_CONTROL = 0;
-        public static final int FRONT_RIGHT_MOTOR_CONTROL = 1;
-        public static final int BACK_LEFT_MOTOR_CONTROL = 2;
-        public static final int BACK_RIGHT_MOTOR_CONTROL = 3;
+        public static final int FRONT_LEFT_MOTOR_CONTROL = 5;
+        public static final int FRONT_RIGHT_MOTOR_CONTROL = 10;
+        public static final int BACK_LEFT_MOTOR_CONTROL = 11;
+        public static final int BACK_RIGHT_MOTOR_CONTROL = 14;
 
-        public static final int INTAKE_PORT = 4;
-        public static final int SHOOTER_PORT = 5;
-        public static final int TROUGH_PORT = 6;
+        public static final int INTAKE_PORT = 9;
+        // TODO figure out shooter port
+        public static final int SHOOTER_PORT = 17;
+        public static final int TROUGH_PORT = 12;
         public static final int GATEKEEPER_PORT = 7;
 
         public static final int CLIMBER_PORT = 8;
@@ -95,7 +91,15 @@ public final class Constants {
     }
 
     public final static class BehaviorConstants {
-        public static final double GATEKEEPER_ALLOW_TIME = 5.0;
+        // TODO
+        public static final double GATEKEEPER_ALLOW_TIME = 0.5;
+        
+        public static final double CLIMBER_SPEED = 1.0;
+        public static final double GATEKEEPER_SPEED = 1.0;
+        public static final double INTAKE_SPEED = 1.0;
+
+        // TODO servo or whatevs for releasing
+        public static final double RELEASE_SERVO_ANGLE = 360;
     }
 
     public final static class InputConstants {

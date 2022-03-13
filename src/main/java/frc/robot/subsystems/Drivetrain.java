@@ -39,12 +39,20 @@ public class Drivetrain extends SubsystemBase {
         frontRightSpark = new CANSparkMax(frontRightMotorControl, MotorType.kBrushless);
         backRightSpark = new CANSparkMax(backRightMotorControl, MotorType.kBrushless);
         backLeftSpark = new CANSparkMax(backLeftMotorControl, MotorType.kBrushless);
+        frontRightSpark.setInverted(true);
+        backRightSpark.setInverted(true);
 
         frontLeftEncoder = frontLeftSpark.getEncoder();
         frontRightEncoder = frontRightSpark.getEncoder();
         backLeftEncoder = backLeftSpark.getEncoder();
         backRightEncoder = backRightSpark.getEncoder();
 
+        frontLeftEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
+        frontRightEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
+        backLeftEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
+        backRightEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
+
+        
         gyro = new ADXRS450_Gyro();
         gyro.calibrate();
 
@@ -55,7 +63,7 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void drive(float ySpeed, float xSpeed, float zRotation, boolean fieldRelative) {
-        if (fieldRelative) {
+       if (fieldRelative) {
             mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation, -gyro.getAngle());
         } else {
             mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation);
@@ -83,6 +91,14 @@ public class Drivetrain extends SubsystemBase {
         frontRightEncoder.setPosition(0);
         backLeftEncoder.setPosition(0);
         backRightEncoder.setPosition(0);
+    }
+
+    public void resetEncoders() {
+        frontLeftEncoder.setPosition(0);
+        frontRightEncoder.setPosition(0);
+        backLeftEncoder.setPosition(0);
+        backRightEncoder.setPosition(0);
+        gyro.reset();
     }
 
     public void setDriveMotorControllersVolts(MecanumDriveMotorVoltages volts) {
