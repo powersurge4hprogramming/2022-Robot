@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
   private final WPI_TalonFX climberMotor;
@@ -25,8 +26,7 @@ public class Climber extends SubsystemBase {
   }
 
   public void release() {
-    // TODO servo or whatevs for releasing
-    releaseMotor.setAngle(360);
+    releaseMotor.setAngle(Constants.BehaviorConstants.RELEASE_SERVO_ANGLE);
   }
 
   public void runMotor(double speed) {

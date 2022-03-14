@@ -21,14 +21,14 @@ public class MechAimCommand extends CommandBase {
   public MechAimCommand(Drivetrain driveTrain) {
     this.driveTrain = driveTrain;
 
-    visionController = new PIDController(Constants.VISION_PID_X, Constants.VISION_PID_I, Constants.VISION_PID_D);
+    visionController = new PIDController(Constants.VisionConstants.VISION_PID_X, Constants.VisionConstants.VISION_PID_I, Constants.VisionConstants.VISION_PID_D);
     addRequirements(driveTrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    visionController.setTolerance(Constants.VISION_PID_TOLERANCE);
+    visionController.setTolerance(Constants.VisionConstants.VISION_PID_TOLERANCE);
     visionController.setSetpoint(0);
   }
 
@@ -44,7 +44,7 @@ public class MechAimCommand extends CommandBase {
     SmartDashboard.putNumber("MechAim Z", z);
     // TODO: Ensure you dont need to negate it, PID setpoint should take care of
     // that
-    driveTrain.drive(0f, 0f, (float) z, false);
+    driveTrain.drive(0f, 0f, (float) z*-1, false);
     SmartDashboard.putBoolean("Aimed?", visionController.atSetpoint());
   }
 

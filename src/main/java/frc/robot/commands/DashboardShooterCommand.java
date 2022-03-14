@@ -27,14 +27,14 @@ public class DashboardShooterCommand extends CommandBase {
   @Override
   public void execute() {
     double shooterSpeed = SmartDashboard.getNumber("Shooter Speed", 0.0);
-    shooter.set(shooterSpeed);
+    shooter.setPercentOutput(shooterSpeed);
     SmartDashboard.putNumber("Shooter Speed", shooterSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.set(0.0);
+    shooter.setPercentOutput(0.0);
   }
 
   // Returns true when the command should end.

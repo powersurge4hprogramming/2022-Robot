@@ -28,16 +28,15 @@ public class VisionShooterCommand extends CommandBase {
   @Override
   public void execute() {
     double distance = LimeVision.targetDistance();
-    // TODO: Find this equation, set it in
-    double setSpeed = 1.0;
+    double setSpeed = 1962*distance + 10226;
     SmartDashboard.putNumber("Vision Shooter Speed", setSpeed);
-    shooter.set(setSpeed);
+    shooter.setVelocity(100.0);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.set(0.0);
+    shooter.setPercentOutput(0.0);
     SmartDashboard.putNumber("Vision Shooter Speed", 0.0);
   }
 
