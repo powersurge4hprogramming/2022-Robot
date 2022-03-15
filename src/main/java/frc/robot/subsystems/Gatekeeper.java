@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Gatekeeper extends SubsystemBase {
+
   private final CANSparkMax gatekeeperMotor;
 
   public Gatekeeper(int gatekeeperPort) {

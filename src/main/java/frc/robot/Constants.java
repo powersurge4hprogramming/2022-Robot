@@ -80,8 +80,6 @@ public final class Constants {
                 public static final double DIST_HUB_HEIGHT = 2.64;
                 public static final double DIST_LIME_MOUNT_ANGLE = 11.2;
 
-                
-
         }
 
         public final static class MotorConstants {
@@ -96,10 +94,23 @@ public final class Constants {
                 public static final int TROUGH_PORT = 12;
                 public static final int GATEKEEPER_PORT = 7;
 
-                // TODO figure out climber port stuff
-                public static final int CLIMBER_PORT = 8;
-                public static final int RELEASE_MOTOR_PORT = 9; // PWM
+                // TODO flash climber to 18
+                public static final int CLIMBER_PORT = 18;
+                public static final int RELEASE_MOTOR_PORT = 4; // PWM
 
+        }
+
+        public final static class ShooterConstants {
+
+                public static final double TALON_KP = 0.1;
+                public static final double TALON_KI = 0.001;
+                public static final double TALON_KD = 5;
+                public static final double TALON_KF = 1023.0 / 21940.0;
+                public static final double TALON_KPEAK_OUTPUT = 1.00;
+
+                public static final int TALON_TIMEOUT = 30;
+
+                public static final double TALON_NEUTRAL_DEADBAND = 0.001;
         }
 
         public final static class BehaviorConstants {

@@ -10,17 +10,14 @@ import frc.robot.data_structs.LimeVision;
 
 public class LimeReader extends CommandBase {
 
-  /** Creates a new LimeReader. */
   public LimeReader() {
 
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
 
@@ -33,14 +30,12 @@ public class LimeReader extends CommandBase {
     }
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     SmartDashboard.putBoolean("Vision On", false);
     SmartDashboard.putNumber("Target Distance", -1.0);
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

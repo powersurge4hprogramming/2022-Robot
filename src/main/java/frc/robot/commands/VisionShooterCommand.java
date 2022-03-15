@@ -10,37 +10,32 @@ import frc.robot.data_structs.LimeVision;
 import frc.robot.subsystems.Shooter;
 
 public class VisionShooterCommand extends CommandBase {
+
   private final Shooter shooter;
 
-  /** Creates a new VIsionShooterCommand. */
   public VisionShooterCommand(Shooter shooter) {
     this.shooter = shooter;
-    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(shooter);
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     double distance = LimeVision.targetDistance();
-    double setSpeed = 1962*distance + 10226;
+    double setSpeed = 1962 * distance + 10226;
     SmartDashboard.putNumber("Vision Shooter Speed", setSpeed);
-    shooter.setVelocity(100.0);
+    shooter.setVelocity(setSpeed);
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     shooter.setPercentOutput(0.0);
     SmartDashboard.putNumber("Vision Shooter Speed", 0.0);
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

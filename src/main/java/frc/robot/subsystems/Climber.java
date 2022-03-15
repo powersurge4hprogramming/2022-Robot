@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
+
   private final WPI_TalonFX climberMotor;
   private final Servo releaseMotor;
 
-  /** Creates a new Climber. */
   public Climber(int climberMotor, int releaseMotor) {
     this.climberMotor = new WPI_TalonFX(climberMotor);
     this.releaseMotor = new Servo(releaseMotor);
@@ -22,7 +22,6 @@ public class Climber extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
   }
 
   public void release() {

@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
+
     private final MecanumDrive mecanumDrive;
 
     private final RelativeEncoder frontLeftEncoder;
@@ -108,7 +109,6 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public MecanumDriveWheelSpeeds getCurrentWheelSpeeds() {
-        // TODO: fix with setConversionFactor
         return new MecanumDriveWheelSpeeds(frontLeftEncoder.getVelocity(),
                 frontRightEncoder.getVelocity(), backLeftEncoder.getVelocity(), backRightEncoder.getVelocity());
     }

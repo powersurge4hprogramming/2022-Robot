@@ -11,41 +11,39 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
-import frc.robot.utilities.Gains;
+import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  /** Creates a new Shooter. */
+
   private final WPI_TalonFX shooterMotor;
 
   public Shooter(int shooterPort) {
-    int timeout = 30;
-    Gains kGains_Velocit = new Gains(0.10, 0.001, 5, 1023.0 / 21940.0, 300, 1.00);
     shooterMotor = new WPI_TalonFX(shooterPort);
     shooterMotor.setInverted(true);
+
     /* config all the settings */
     shooterMotor.configFactoryDefault();
-    shooterMotor.configNeutralDeadband(0.001);
+    shooterMotor.configNeutralDeadband(Constants.ShooterConstants.TALON_NEUTRAL_DEADBAND);
     shooterMotor.setNeutralMode(NeutralMode.Coast);
 
     shooterMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,
         0,
-        timeout);
+        Constants.ShooterConstants.TALON_TIMEOUT);
 
-    shooterMotor.configNominalOutputForward(0, timeout);
-    shooterMotor.configNominalOutputReverse(0, timeout);
-    shooterMotor.configPeakOutputForward(1, timeout);
-    shooterMotor.configPeakOutputReverse(-1, timeout);
+    shooterMotor.configNominalOutputForward(0, Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.configNominalOutputReverse(0, Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.configPeakOutputForward(1, Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.configPeakOutputReverse(-1, Constants.ShooterConstants.TALON_TIMEOUT);
 
-    shooterMotor.config_kF(0, kGains_Velocit.kF, timeout);
-    shooterMotor.config_kP(0, kGains_Velocit.kP, timeout);
-    shooterMotor.config_kI(0, kGains_Velocit.kI, timeout);
-    shooterMotor.config_kD(0, kGains_Velocit.kD, timeout);
+    shooterMotor.config_kF(0, Constants.ShooterConstants.TALON_KF, Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.config_kP(0, Constants.ShooterConstants.TALON_KP, Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.config_kI(0, Constants.ShooterConstants.TALON_KI, Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.config_kD(0, Constants.ShooterConstants.TALON_KD, Constants.ShooterConstants.TALON_TIMEOUT);
 
   }
 
   public void setVelocity(double speed) {
-    shooterMotor.set(ControlMode.Velocity, 1650);
+    shooterMotor.set(ControlMode.Velocity, speed);
   }
 
   public void setPercentOutput(double speed) {
