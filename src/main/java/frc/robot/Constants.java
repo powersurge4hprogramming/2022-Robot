@@ -114,7 +114,7 @@ public final class Constants {
         }
 
         public final static class BehaviorConstants {
-                // TODO
+                // TODO - modify
                 public static final double GATEKEEPER_ALLOW_TIME = 0.5;
 
                 public static final double CLIMBER_SPEED = 1.0;

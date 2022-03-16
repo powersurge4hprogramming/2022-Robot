@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Climber;
 
 public class ClimbCommand extends CommandBase {
-  
+
   private final Climber climber;
 
   public ClimbCommand(Climber climber) {

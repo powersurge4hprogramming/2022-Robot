@@ -30,11 +30,14 @@ import frc.robot.subsystems.Gatekeeper;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -105,6 +108,22 @@ public class RobotContainer {
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.CLIMB_BUTTON)
                                 .whenHeld(new ClimbCommand(m_climber));
 
+                // Shooter presets     FIX!!
+                new POVButton(m_operatorJoystick, 0)
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(1.00), m_shooter));
+                new POVButton(m_operatorJoystick, 90)
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.95), m_shooter));
+                new POVButton(m_operatorJoystick, 270)
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.89), m_shooter));
+                new POVButton(m_operatorJoystick, 180)
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.60), m_shooter));
+                new POVButton(m_operatorJoystick, 225)
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.81), m_shooter));
+                new POVButton(m_operatorJoystick, 315)
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.77), m_shooter));
+                new POVButton(m_operatorJoystick, 45)
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.45), m_shooter));
+
         }
 
         /**
@@ -123,7 +142,7 @@ public class RobotContainer {
                 Trajectory mechTrajectory1 = TrajectoryGenerator.generateTrajectory(
                                 // Start at the origin facing the +X direction
                                 new Pose2d(0, 0, new Rotation2d(0)),
-                                // Pass through these two interior waypoints, making an 's' curve path
+                                // Pass through nothing
                                 List.of(),
                                 // End 1.03 meters backwards ahead of where we started, facing forward
                                 new Pose2d(1.03, 0, Rotation2d.fromDegrees(180)),
@@ -204,7 +223,14 @@ public class RobotContainer {
                                                 mechMove2.andThen(() -> m_drivetrain.drive(0, 0, 0, false))
 
                                 ));
+
+                // If we cant get auto working
+                // new InstantCommand(toRun, m_drivetrain);
+         /*       ParallelRaceGroup hackDrive = new InstantCommand(() -> m_drivetrain.drive(0.2f, 0f, 0f, false),
+                                m_drivetrain).withTimeout(0.75);
+                return hackDrive; */
+
                 // Run path following command, then stop at the end.
-                return auto1;
+                 return auto1;
         }
 }
