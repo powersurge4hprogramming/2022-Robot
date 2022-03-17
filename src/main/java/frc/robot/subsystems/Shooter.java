@@ -23,7 +23,7 @@ public class Shooter extends SubsystemBase {
 
     /* config all the settings */
     shooterMotor.configFactoryDefault();
-    shooterMotor.configNeutralDeadband(Constants.ShooterConstants.TALON_NEUTRAL_DEADBAND);
+  /*  shooterMotor.configNeutralDeadband(Constants.ShooterConstants.TALON_NEUTRAL_DEADBAND);
     shooterMotor.setNeutralMode(NeutralMode.Coast);
 
     shooterMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,
@@ -38,7 +38,7 @@ public class Shooter extends SubsystemBase {
     shooterMotor.config_kF(0, Constants.ShooterConstants.TALON_KF, Constants.ShooterConstants.TALON_TIMEOUT);
     shooterMotor.config_kP(0, Constants.ShooterConstants.TALON_KP, Constants.ShooterConstants.TALON_TIMEOUT);
     shooterMotor.config_kI(0, Constants.ShooterConstants.TALON_KI, Constants.ShooterConstants.TALON_TIMEOUT);
-    shooterMotor.config_kD(0, Constants.ShooterConstants.TALON_KD, Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.config_kD(0, Constants.ShooterConstants.TALON_KD, Constants.ShooterConstants.TALON_TIMEOUT); */
 
   }
 

@@ -75,13 +75,13 @@ public class LimeVision {
     // All measurements in METERS and RADIANS - see
     // https://docs.limelightvision.io/en/latest/cs_estimating_distance.html
 
-    // Limelight height off of ground, TODO
+    // Limelight height off of ground, DONE
     double h1 = Constants.VisionConstants.DIST_LIME_HEIGHT;
 
     // Upper Hub height off of ground, DONE
     double h2 = Constants.VisionConstants.DIST_HUB_HEIGHT;
 
-    // Limelight mounted angle from horizontal, TODO
+    // Limelight mounted angle from horizontal, DONE
     double a1 = Math.toRadians(Constants.VisionConstants.DIST_LIME_MOUNT_ANGLE);
 
     // Limelight angle from mounted to target

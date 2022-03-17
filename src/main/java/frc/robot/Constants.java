@@ -36,7 +36,6 @@ public final class Constants {
                                 new Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2),
                                 new Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2));
 
-                // TODO
                 public static final double DIST_PER_COUNT_NEO = (0.1524 * Math.PI / 8.357);
 
                 // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
@@ -73,7 +72,7 @@ public final class Constants {
                 public static final double VISION_PID_X = 0.5;
                 public static final double VISION_PID_I = 0;
                 public static final double VISION_PID_D = 0;
-                public static final double VISION_PID_TOLERANCE = 0.15;
+                public static final double VISION_PID_TOLERANCE = 0.07;
 
                 // DIST in meters
                 public static final double DIST_LIME_HEIGHT = 0.93726;
@@ -94,7 +93,6 @@ public final class Constants {
                 public static final int TROUGH_PORT = 12;
                 public static final int GATEKEEPER_PORT = 7;
 
-                // TODO flash climber to 18
                 public static final int CLIMBER_PORT = 18;
                 public static final int RELEASE_MOTOR_PORT = 4; // PWM
 
@@ -117,12 +115,13 @@ public final class Constants {
                 // TODO - modify
                 public static final double GATEKEEPER_ALLOW_TIME = 0.5;
 
-                public static final double CLIMBER_SPEED = 1.0;
+                public static final double CLIMBER_SPEED = 0.2;
                 public static final double GATEKEEPER_SPEED = 1.0;
-                public static final double INTAKE_SPEED = 1.0;
+                public static final
+                 double INTAKE_SPEED = 1.0;
 
                 // TODO servo or whatevs for releasing
-                public static final double RELEASE_SERVO_ANGLE = 360;
+                public static final double RELEASE_SERVO_ANGLE = 0;
         }
 
         public final static class InputConstants {
@@ -144,6 +143,9 @@ public final class Constants {
                 public static final int GATEKEEPER_ALLOW_BUTTON = 2;
 
                 public static final int CLIMB_BUTTON = 11;
+
+                public static final int CLIMB_RELEASE_BUTTON_1 = 9;
+
 
         }
 

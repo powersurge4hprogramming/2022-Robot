@@ -51,6 +51,7 @@ public class MechAimCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return visionController.atSetpoint();
+  //  return visionController.atSetpoint(); TODO
+  return false;
   }
 }

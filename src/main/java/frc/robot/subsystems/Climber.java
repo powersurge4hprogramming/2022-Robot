@@ -6,26 +6,18 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 
 public class Climber extends SubsystemBase {
 
   private final WPI_TalonFX climberMotor;
-  private final Servo releaseMotor;
 
   public Climber(int climberMotor, int releaseMotor) {
     this.climberMotor = new WPI_TalonFX(climberMotor);
-    this.releaseMotor = new Servo(releaseMotor);
   }
 
   @Override
   public void periodic() {
-  }
-
-  public void release() {
-    releaseMotor.setAngle(Constants.BehaviorConstants.RELEASE_SERVO_ANGLE);
   }
 
   public void runMotor(double speed) {

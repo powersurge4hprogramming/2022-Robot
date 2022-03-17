@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Climber;
 
 public class ClimbCommand extends CommandBase {
@@ -18,12 +19,11 @@ public class ClimbCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    climber.release();
   }
 
   @Override
   public void execute() {
-    climber.runMotor(1.0);
+    climber.runMotor(Constants.BehaviorConstants.CLIMBER_SPEED);
   }
 
   @Override
