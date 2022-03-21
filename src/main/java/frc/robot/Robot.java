@@ -38,13 +38,15 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
 
     // Initialize the Camera server for shuffleboard usage
-    UsbCamera cam0 = CameraServer.startAutomaticCapture(0);
-    cam0.setResolution(160, 120);
-    cam0.setFPS(18);
+    
 
-    UsbCamera cam1 = CameraServer.startAutomaticCapture(1);
+    UsbCamera cam1 = CameraServer.startAutomaticCapture(0);
     cam1.setResolution(160, 120);
     cam1.setFPS(18);
+
+    UsbCamera cam0 = CameraServer.startAutomaticCapture(1);
+    cam0.setResolution(160, 120);
+    cam0.setFPS(18);
 
   }
 

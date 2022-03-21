@@ -10,21 +10,30 @@ import frc.robot.Constants;
 
 public class ClimbRelease extends SubsystemBase {
 
-  private final Servo releaseMotor;
+  private final Servo climbReleaseServo;
+  private final Servo fingerReleaseServo;
 
-  public ClimbRelease(int releaseMotor) {
-    this.releaseMotor = new Servo(releaseMotor);
+  public ClimbRelease(int climbReleaseServo, int fingerReleaseServo) {
+    this.climbReleaseServo = new Servo(climbReleaseServo);
+    this.fingerReleaseServo = new Servo(fingerReleaseServo);
+
   }
 
   @Override
   public void periodic() {
   }
 
-  public void release() {
-    releaseMotor.setAngle(Constants.BehaviorConstants.RELEASE_SERVO_ANGLE);
+  public void clampAll() {
+    climbReleaseServo.setAngle(Constants.BehaviorConstants.CLIMB_START_SERVO_ANGLE);
+    fingerReleaseServo.setAngle(Constants.BehaviorConstants.FINGER_START_SERVO_ANGLE);
   }
-  public void setAngle(int angle) {
-    releaseMotor.setAngle(angle);
+
+  public void releaseClimber() {
+    climbReleaseServo.setAngle(Constants.BehaviorConstants.CLIMB_RELEASE_SERVO_ANGLE);
   }
-  
+
+  public void releaseFinger() {
+    fingerReleaseServo.setAngle(Constants.BehaviorConstants.CLIMB_RELEASE_SERVO_ANGLE);
+  }
+
 }

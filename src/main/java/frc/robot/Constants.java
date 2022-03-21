@@ -94,7 +94,9 @@ public final class Constants {
                 public static final int GATEKEEPER_PORT = 7;
 
                 public static final int CLIMBER_PORT = 18;
-                public static final int RELEASE_MOTOR_PORT = 4; // PWM
+
+                public static final int CLIMB_RELEASE_SERVO_PORT = 4; // PWM
+                public static final int FINGER_RELEASE_SERVO_PORT = 5; // PWM
 
         }
 
@@ -115,13 +117,16 @@ public final class Constants {
                 // TODO - modify
                 public static final double GATEKEEPER_ALLOW_TIME = 0.5;
 
-                public static final double CLIMBER_SPEED = 0.2;
+                public static final double CLIMBER_SPEED = 0.3;
                 public static final double GATEKEEPER_SPEED = 1.0;
-                public static final
-                 double INTAKE_SPEED = 1.0;
+                public static final double INTAKE_SPEED = 1.0;
 
                 // TODO servo or whatevs for releasing
-                public static final double RELEASE_SERVO_ANGLE = 0;
+                public static final int CLIMB_RELEASE_SERVO_ANGLE = 0;
+                public static final int CLIMB_START_SERVO_ANGLE = 90;
+
+                public static final int FINGER_RELEASE_SERVO_ANGLE = 90; // TODO
+                public static final int FINGER_START_SERVO_ANGLE = 0;
         }
 
         public final static class InputConstants {
@@ -144,8 +149,8 @@ public final class Constants {
 
                 public static final int CLIMB_BUTTON = 11;
 
-                public static final int CLIMB_RELEASE_BUTTON_1 = 9;
-
+                public static final int CLIMB_RELEASE_BUTTON = 9;
+                public static final int FINGER_RELEASE_BUTTON = 10;
 
         }
 

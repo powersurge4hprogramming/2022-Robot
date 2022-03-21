@@ -65,8 +65,9 @@ public class RobotContainer {
                         Constants.MotorConstants.TROUGH_PORT);
         private final Gatekeeper m_gatekeeper = new Gatekeeper(Constants.MotorConstants.GATEKEEPER_PORT);
         private final Climber m_climber = new Climber(Constants.MotorConstants.CLIMBER_PORT,
-                        Constants.MotorConstants.RELEASE_MOTOR_PORT);
-        private final ClimbRelease m_climbRelease = new ClimbRelease(Constants.MotorConstants.RELEASE_MOTOR_PORT);
+                        Constants.MotorConstants.CLIMB_RELEASE_SERVO_PORT);
+        private final ClimbRelease m_climbRelease = new ClimbRelease(Constants.MotorConstants.CLIMB_RELEASE_SERVO_PORT,
+                        Constants.MotorConstants.FINGER_RELEASE_SERVO_PORT);
 
         // Commands
         private final DriveCommand m_teleopCommand = new DriveCommand(m_drivetrain, m_driveJoystick);
@@ -85,7 +86,7 @@ public class RobotContainer {
                 m_limeReader.schedule();
                 m_drivetrain.setDefaultCommand(m_teleopCommand);
                 m_shooter.setDefaultCommand(m_shooterCommand);
-                m_climbRelease.setAngle(90);
+                m_climbRelease.clampAll();
         }
 
         /**
@@ -112,24 +113,27 @@ public class RobotContainer {
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.CLIMB_BUTTON)
                                 .whenHeld(new ClimbCommand(m_climber));
 
-                // Shooter presets FIX!!
+                // Shooter presets
                 new POVButton(m_operatorJoystick, 0)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(1.00), m_shooter));
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.70), m_shooter));
                 new POVButton(m_operatorJoystick, 90)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.95), m_shooter));
                 new POVButton(m_operatorJoystick, 270)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.89), m_shooter));
-                new POVButton(m_operatorJoystick, 180)
+                new POVButton(m_operatorJoystick, 45)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.60), m_shooter));
                 new POVButton(m_operatorJoystick, 225)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.81), m_shooter));
                 new POVButton(m_operatorJoystick, 315)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.77), m_shooter));
-                new POVButton(m_operatorJoystick, 45)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.45), m_shooter));
+                new POVButton(m_operatorJoystick, 180)
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.415), m_shooter));
 
-                new JoystickButton(m_operatorJoystick, Constants.InputConstants.CLIMB_RELEASE_BUTTON_1)
-                                .whenPressed(() -> m_climbRelease.release(), m_climbRelease);
+                new JoystickButton(m_operatorJoystick, Constants.InputConstants.CLIMB_RELEASE_BUTTON)
+                                .whenPressed(() -> m_climbRelease.releaseClimber(), m_climbRelease);
+
+                new JoystickButton(m_operatorJoystick, Constants.InputConstants.FINGER_RELEASE_BUTTON)
+                                .whenPressed(() -> m_climbRelease.releaseFinger(), m_climbRelease);
 
         }
 
@@ -139,7 +143,7 @@ public class RobotContainer {
          * @return the command to run in autonomous
          */
         public Command getAutonomousCommand() {
-                m_climbRelease.setAngle(90);
+                m_climbRelease.clampAll();
                 // Create config for trajectory
                 /*
                  * TrajectoryConfig config = new TrajectoryConfig(
@@ -247,7 +251,7 @@ public class RobotContainer {
                                 // Spin up shooter to 0.65 for 4 seconds, then run gatekeeper while shooting,
                                 // then end after 5 seconds
                                 new ParallelRaceGroup(
-                                                new RunCommand((() -> m_shooter.setPercentOutput(0.75)), m_shooter),
+                                                new RunCommand((() -> m_shooter.setPercentOutput(0.69)), m_shooter),
                                                 new SequentialCommandGroup(new WaitCommand(2),
                                                                 new GatekeeperCommand(m_gatekeeper).withTimeout(2))),
 
