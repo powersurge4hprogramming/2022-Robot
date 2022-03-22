@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -19,31 +20,41 @@ public class Shooter extends SubsystemBase {
 
   public Shooter(int shooterPort) {
     shooterMotor = new WPI_TalonFX(shooterPort);
-    shooterMotor.setInverted(true);
 
     /* config all the settings */
     shooterMotor.configFactoryDefault();
-  /*  shooterMotor.configNeutralDeadband(Constants.ShooterConstants.TALON_NEUTRAL_DEADBAND);
+    shooterMotor.setInverted(true);
+
+
+    shooterMotor.configNeutralDeadband(Constants.ShooterConstants.TALON_NEUTRAL_DEADBAND);
     shooterMotor.setNeutralMode(NeutralMode.Coast);
 
     shooterMotor.configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor,
         0,
         Constants.ShooterConstants.TALON_TIMEOUT);
 
-    shooterMotor.configNominalOutputForward(0, Constants.ShooterConstants.TALON_TIMEOUT);
-    shooterMotor.configNominalOutputReverse(0, Constants.ShooterConstants.TALON_TIMEOUT);
-    shooterMotor.configPeakOutputForward(1, Constants.ShooterConstants.TALON_TIMEOUT);
-    shooterMotor.configPeakOutputReverse(-1, Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.configNominalOutputForward(0,
+        Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.configNominalOutputReverse(0,
+        Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.configPeakOutputForward(1,
+        Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.configPeakOutputReverse(-1,
+        Constants.ShooterConstants.TALON_TIMEOUT);
 
-    shooterMotor.config_kF(0, Constants.ShooterConstants.TALON_KF, Constants.ShooterConstants.TALON_TIMEOUT);
-    shooterMotor.config_kP(0, Constants.ShooterConstants.TALON_KP, Constants.ShooterConstants.TALON_TIMEOUT);
-    shooterMotor.config_kI(0, Constants.ShooterConstants.TALON_KI, Constants.ShooterConstants.TALON_TIMEOUT);
-    shooterMotor.config_kD(0, Constants.ShooterConstants.TALON_KD, Constants.ShooterConstants.TALON_TIMEOUT); */
+    shooterMotor.config_kF(0, Constants.ShooterConstants.TALON_KF,
+        Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.config_kP(0, Constants.ShooterConstants.TALON_KP,
+        Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.config_kI(0, Constants.ShooterConstants.TALON_KI,
+        Constants.ShooterConstants.TALON_TIMEOUT);
+    shooterMotor.config_kD(0, Constants.ShooterConstants.TALON_KD,
+        Constants.ShooterConstants.TALON_TIMEOUT);
 
   }
 
   public void setVelocity(double speed) {
-    shooterMotor.set(ControlMode.Velocity, speed);
+    shooterMotor.set(TalonFXControlMode.Velocity, speed);
   }
 
   public void setPercentOutput(double speed) {
@@ -52,6 +63,6 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Shooter Velocity", shooterMotor.getSelectedSensorVelocity());
+    SmartDashboard.putNumber("Shooter Velocity", shooterMotor.getSelectedSensorVelocity(0));
   }
 }

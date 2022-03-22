@@ -105,7 +105,7 @@ public final class Constants {
                 public static final double TALON_KP = 0.1;
                 public static final double TALON_KI = 0.001;
                 public static final double TALON_KD = 5;
-                public static final double TALON_KF = 1023.0 / 21940.0;
+                public static final double TALON_KF = 1023.0 / 21940.0; // Second number is velocity units at 100%
                 public static final double TALON_KPEAK_OUTPUT = 1.00;
 
                 public static final int TALON_TIMEOUT = 30;
@@ -114,14 +114,12 @@ public final class Constants {
         }
 
         public final static class BehaviorConstants {
-                // TODO - modify
                 public static final double GATEKEEPER_ALLOW_TIME = 0.5;
 
                 public static final double CLIMBER_SPEED = 0.3;
                 public static final double GATEKEEPER_SPEED = 1.0;
                 public static final double INTAKE_SPEED = 1.0;
 
-                // TODO servo or whatevs for releasing
                 public static final int CLIMB_RELEASE_SERVO_ANGLE = 0;
                 public static final int CLIMB_START_SERVO_ANGLE = 90;
 
