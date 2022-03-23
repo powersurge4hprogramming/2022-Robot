@@ -4,16 +4,6 @@
 
 package frc.robot;
 
-import java.util.List;
-
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrajectoryConfig;
-import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ClimbCommand;
@@ -32,7 +22,6 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -102,7 +91,7 @@ public class RobotContainer {
                                 .whenHeld(new IntakeCommand(m_Intake));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.MECH_AIM_BUTTON)
-                                .whenHeld(new ParallelCommandGroup( new VisionShooterCommand(m_shooter),
+                                .whenHeld(new ParallelCommandGroup(new VisionShooterCommand(m_shooter),
                                                 new MechAimCommand(m_drivetrain)));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.GATEKEEPER_ALLOW_BUTTON)
@@ -125,7 +114,7 @@ public class RobotContainer {
                 new POVButton(m_operatorJoystick, 225)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.81), m_shooter));
                 new POVButton(m_operatorJoystick, 315)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.77), m_shooter));
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(1.0), m_shooter));
                 new POVButton(m_operatorJoystick, 180)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.415), m_shooter));
 

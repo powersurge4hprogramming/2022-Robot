@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
@@ -24,7 +23,6 @@ public class Shooter extends SubsystemBase {
     /* config all the settings */
     shooterMotor.configFactoryDefault();
     shooterMotor.setInverted(true);
-
 
     shooterMotor.configNeutralDeadband(Constants.ShooterConstants.TALON_NEUTRAL_DEADBAND);
     shooterMotor.setNeutralMode(NeutralMode.Coast);
@@ -49,7 +47,7 @@ public class Shooter extends SubsystemBase {
     shooterMotor.config_kI(0, Constants.ShooterConstants.TALON_KI,
         Constants.ShooterConstants.TALON_TIMEOUT);
     shooterMotor.config_kD(0, Constants.ShooterConstants.TALON_KD,
-        Constants.ShooterConstants.TALON_TIMEOUT); 
+        Constants.ShooterConstants.TALON_TIMEOUT);
 
   }
 

@@ -21,7 +21,7 @@ public class LimeReader extends CommandBase {
   @Override
   public void execute() {
 
-    SmartDashboard.putBoolean("Vision On", (LimeVision.getTv() == 1.0));
+    SmartDashboard.putBoolean("Vision Tracked", (LimeVision.getTv() == 1.0));
 
     if (LimeVision.getTracking()) {
       SmartDashboard.putNumber("Target Distance", LimeVision.targetDistance());
@@ -32,7 +32,7 @@ public class LimeReader extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putBoolean("Vision On", false);
+    SmartDashboard.putBoolean("Vision Tracked", false);
     SmartDashboard.putNumber("Target Distance", -1.0);
   }
 

@@ -11,7 +11,6 @@ import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -73,12 +72,6 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         mecanumDriveOdometry.update(gyro.getRotation2d(), getCurrentWheelSpeeds());
-        SmartDashboard.putData("Mecanum Drive", mecanumDrive);
-        SmartDashboard.putNumber("Front Left Encoder", frontLeftEncoder.getPosition());
-        SmartDashboard.putNumber("Front Right Encoder", frontRightEncoder.getPosition());
-        SmartDashboard.putNumber("Back Left Encoder", backLeftEncoder.getPosition());
-        SmartDashboard.putNumber("Back Right Encoder", backRightEncoder.getPosition());
-        SmartDashboard.putNumber("Gyro", gyro.getAngle());
     }
 
     public Pose2d getPose() {

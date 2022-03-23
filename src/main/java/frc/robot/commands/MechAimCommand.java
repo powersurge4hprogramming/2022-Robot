@@ -5,7 +5,6 @@
 package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.data_structs.LimeVision;
@@ -39,9 +38,7 @@ public class MechAimCommand extends CommandBase {
     xOffset = MathU.remap(-27, 27, -1, 1, xOffset);
     double z = visionController.calculate(xOffset);
 
-    SmartDashboard.putNumber("MechAim Z", z);
     driveTrain.drive(0f, 0f, (float) z, false);
-    SmartDashboard.putBoolean("Aimed?", visionController.atSetpoint());
   }
 
   @Override
