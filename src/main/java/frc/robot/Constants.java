@@ -69,15 +69,15 @@ public final class Constants {
 
         public static final class VisionConstants {
 
-                public static final double VISION_PID_X = 0.5;
-                public static final double VISION_PID_I = 0;
+                public static final double VISION_PID_P = 0.4;
+                public static final double VISION_PID_I = 0.1;
                 public static final double VISION_PID_D = 0;
-                public static final double VISION_PID_TOLERANCE = 0.07;
+                public static final double VISION_PID_TOLERANCE = 0.035;
 
                 // DIST in meters
                 public static final double DIST_LIME_HEIGHT = 0.93726;
                 public static final double DIST_HUB_HEIGHT = 2.64;
-                public static final double DIST_LIME_MOUNT_ANGLE = 11.2;
+                public static final double DIST_LIME_MOUNT_ANGLE = 5;
 
         }
 
@@ -102,10 +102,10 @@ public final class Constants {
 
         public final static class ShooterConstants {
 
-                public static final double TALON_KP = 0.1;
-                public static final double TALON_KI = 0.001;
-                public static final double TALON_KD = 5;
-                public static final double TALON_KF = 1023.0 / 21940.0; // Second number is velocity units at 100%
+                public static final double TALON_KP = 0.18;
+                public static final double TALON_KI = 0.002;
+                public static final double TALON_KD = 4;
+                public static final double TALON_KF = 1023.0 / 21700.0; // Second number is velocity units at 100%
                 public static final double TALON_KPEAK_OUTPUT = 1.00;
 
                 public static final int TALON_TIMEOUT = 30;
@@ -149,6 +149,8 @@ public final class Constants {
 
                 public static final int CLIMB_RELEASE_BUTTON = 9;
                 public static final int FINGER_RELEASE_BUTTON = 10;
+
+                public static final int Shooter_Speed = 7;
 
         }
 

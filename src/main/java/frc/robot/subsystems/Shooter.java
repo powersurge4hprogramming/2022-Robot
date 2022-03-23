@@ -49,7 +49,7 @@ public class Shooter extends SubsystemBase {
     shooterMotor.config_kI(0, Constants.ShooterConstants.TALON_KI,
         Constants.ShooterConstants.TALON_TIMEOUT);
     shooterMotor.config_kD(0, Constants.ShooterConstants.TALON_KD,
-        Constants.ShooterConstants.TALON_TIMEOUT);
+        Constants.ShooterConstants.TALON_TIMEOUT); 
 
   }
 
@@ -58,7 +58,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setPercentOutput(double speed) {
-    shooterMotor.set(ControlMode.PercentOutput, speed);
+    shooterMotor.set(TalonFXControlMode.PercentOutput, speed);
   }
 
   @Override

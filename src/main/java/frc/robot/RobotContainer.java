@@ -102,7 +102,7 @@ public class RobotContainer {
                                 .whenHeld(new IntakeCommand(m_Intake));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.MECH_AIM_BUTTON)
-                                .whenHeld(new ParallelCommandGroup( // new VisionShooterCommand(m_shooter),
+                                .whenHeld(new ParallelCommandGroup( new VisionShooterCommand(m_shooter),
                                                 new MechAimCommand(m_drivetrain)));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.GATEKEEPER_ALLOW_BUTTON)
@@ -119,7 +119,7 @@ public class RobotContainer {
                 new POVButton(m_operatorJoystick, 90)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.95), m_shooter));
                 new POVButton(m_operatorJoystick, 270)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.89), m_shooter));
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.77), m_shooter));
                 new POVButton(m_operatorJoystick, 45)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.60), m_shooter));
                 new POVButton(m_operatorJoystick, 225)
@@ -128,6 +128,9 @@ public class RobotContainer {
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.77), m_shooter));
                 new POVButton(m_operatorJoystick, 180)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.415), m_shooter));
+
+                new JoystickButton(m_operatorJoystick, Constants.InputConstants.Shooter_Speed)
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.89), m_shooter));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.CLIMB_RELEASE_BUTTON)
                                 .whenPressed(() -> m_climbRelease.releaseClimber(), m_climbRelease);

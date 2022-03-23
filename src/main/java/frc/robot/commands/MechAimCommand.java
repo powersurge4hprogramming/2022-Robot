@@ -20,7 +20,7 @@ public class MechAimCommand extends CommandBase {
   public MechAimCommand(Drivetrain driveTrain) {
     this.driveTrain = driveTrain;
 
-    visionController = new PIDController(Constants.VisionConstants.VISION_PID_X, Constants.VisionConstants.VISION_PID_I,
+    visionController = new PIDController(Constants.VisionConstants.VISION_PID_P, Constants.VisionConstants.VISION_PID_I,
         Constants.VisionConstants.VISION_PID_D);
     addRequirements(this.driveTrain);
   }
@@ -51,6 +51,6 @@ public class MechAimCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-    return visionController.atSetpoint(); // TODO
+    return false;
   }
 }
