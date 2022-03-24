@@ -8,12 +8,15 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.music.Orchestra;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
+  Orchestra orchestra;
+  String music = "happy-bday.chrp";
 
   private final WPI_TalonFX shooterMotor;
 
@@ -49,6 +52,9 @@ public class Shooter extends SubsystemBase {
     shooterMotor.config_kD(0, Constants.ShooterConstants.TALON_KD,
         Constants.ShooterConstants.TALON_TIMEOUT);
 
+    orchestra = new Orchestra();
+    orchestra.addInstrument(shooterMotor);
+
   }
 
   public void setVelocity(double speed) {
@@ -57,6 +63,15 @@ public class Shooter extends SubsystemBase {
 
   public void setPercentOutput(double speed) {
     shooterMotor.set(TalonFXControlMode.PercentOutput, speed);
+  }
+  public void loadMusic() {
+    orchestra.loadMusic(music);
+  }
+  public void playMusic() {
+    orchestra.play();
+  }
+  public void cancelMusic() {
+    orchestra.stop();
   }
 
   @Override
