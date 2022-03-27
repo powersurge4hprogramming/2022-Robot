@@ -73,10 +73,10 @@ public class RobotContainer {
         }
 
         public void teleopStart() {
+                m_climbRelease.clampAll();
                 m_limeReader.schedule();
                 m_drivetrain.setDefaultCommand(m_teleopCommand);
                 m_shooter.setDefaultCommand(m_shooterCommand);
-                m_climbRelease.clampAll();
         }
 
         /**
@@ -92,7 +92,7 @@ public class RobotContainer {
                                 .whenHeld(new IntakeCommand(m_Intake));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.MECH_AIM_BUTTON)
-                                .whenHeld(new ParallelCommandGroup(new VisionShooterCommand(m_shooter),
+                                .whenHeld(new ParallelCommandGroup(//new VisionShooterCommand(m_shooter),
                                                 new MechAimCommand(m_drivetrain)));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.GATEKEEPER_ALLOW_BUTTON)
@@ -105,7 +105,7 @@ public class RobotContainer {
 
                 // Shooter presets
                 new POVButton(m_operatorJoystick, 0)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.70), m_shooter));
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.665), m_shooter));
                 new POVButton(m_operatorJoystick, 90)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.95), m_shooter));
                 new POVButton(m_operatorJoystick, 270)
@@ -247,7 +247,7 @@ public class RobotContainer {
                                 // Spin up shooter to 0.65 for 4 seconds, then run gatekeeper while shooting,
                                 // then end after 5 seconds
                                 new ParallelRaceGroup(
-                                                new RunCommand((() -> m_shooter.setPercentOutput(0.69)), m_shooter),
+                                                new RunCommand((() -> m_shooter.setPercentOutput(0.655)), m_shooter),
                                                 new SequentialCommandGroup(new WaitCommand(2),
                                                                 new GatekeeperCommand(m_gatekeeper).withTimeout(2))),
 

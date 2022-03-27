@@ -33,7 +33,7 @@ public class ClimbRelease extends SubsystemBase {
   }
 
   public void releaseFinger() {
-    fingerReleaseServo.setAngle(Constants.BehaviorConstants.CLIMB_RELEASE_SERVO_ANGLE);
+    fingerReleaseServo.setAngle(Constants.BehaviorConstants.FINGER_RELEASE_SERVO_ANGLE);
   }
 
 }

@@ -77,7 +77,7 @@ public final class Constants {
                 // DIST in meters
                 public static final double DIST_LIME_HEIGHT = 0.508;
                 public static final double DIST_HUB_HEIGHT = 2.64;
-                public static final double DIST_LIME_MOUNT_ANGLE = 14.8;
+                public static final double DIST_LIME_MOUNT_ANGLE = 20.9;
 
         }
 
@@ -115,7 +115,7 @@ public final class Constants {
         public final static class BehaviorConstants {
                 public static final double GATEKEEPER_ALLOW_TIME = 0.5;
 
-                public static final double CLIMBER_SPEED = 0.3;
+                public static final double CLIMBER_SPEED = 0.6;
                 public static final double GATEKEEPER_SPEED = 1.0;
                 public static final double INTAKE_SPEED = 1.0;
 
@@ -139,7 +139,7 @@ public final class Constants {
                 public static final double DRIVER_LATERAL_SLEW = 5;
                 public static final double DRIVER_TWIST_SLEW = 5;
 
-                public static final int INTAKE_BUTTON = 1;
+                public static final int INTAKE_BUTTON = 1; 
                 public static final int MECH_AIM_BUTTON = 5;
 
                 public static final int GATEKEEPER_ALLOW_BUTTON = 2;

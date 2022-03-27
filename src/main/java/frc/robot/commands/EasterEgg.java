@@ -11,7 +11,7 @@ import frc.robot.subsystems.Shooter;
 
 public class EasterEgg extends CommandBase {
   Shooter shooter;
-  int count = 5;
+  int count = 1000;
 
   /*
    * Talon FXs to play music through.
