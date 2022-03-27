@@ -64,12 +64,15 @@ public class Shooter extends SubsystemBase {
   public void setPercentOutput(double speed) {
     shooterMotor.set(TalonFXControlMode.PercentOutput, speed);
   }
+
   public void loadMusic() {
     orchestra.loadMusic(music);
   }
+
   public void playMusic() {
     orchestra.play();
   }
+
   public void cancelMusic() {
     orchestra.stop();
   }

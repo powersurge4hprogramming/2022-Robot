@@ -139,7 +139,7 @@ public final class Constants {
                 public static final double DRIVER_LATERAL_SLEW = 5;
                 public static final double DRIVER_TWIST_SLEW = 5;
 
-                public static final int INTAKE_BUTTON = 1; 
+                public static final int INTAKE_BUTTON = 1;
                 public static final int MECH_AIM_BUTTON = 5;
 
                 public static final int GATEKEEPER_ALLOW_BUTTON = 2;
@@ -152,6 +152,10 @@ public final class Constants {
                 public static final int Shooter_Speed = 7;
                 public static final int EASTER_EGG = 8;
 
+        }
+
+        public final static class DashboardConstants {
+                public static final String DASHBOARD_SHOOTER_SPEED_KEY = "Shooter Speed";
         }
 
 }

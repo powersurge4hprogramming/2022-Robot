@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 
 public class DashboardShooterCommand extends CommandBase {
@@ -15,6 +16,7 @@ public class DashboardShooterCommand extends CommandBase {
   public DashboardShooterCommand(Shooter shooter) {
     this.shooter = shooter;
     addRequirements(this.shooter);
+    SmartDashboard.putNumber(Constants.DashboardConstants.DASHBOARD_SHOOTER_SPEED_KEY, 0.0);
   }
 
   @Override
@@ -23,9 +25,9 @@ public class DashboardShooterCommand extends CommandBase {
 
   @Override
   public void execute() {
-    double shooterSpeed = SmartDashboard.getNumber("Shooter Speed", 0.0);
+    double shooterSpeed = SmartDashboard.getNumber(Constants.DashboardConstants.DASHBOARD_SHOOTER_SPEED_KEY, 0.0);
     shooter.setPercentOutput(shooterSpeed);
-    SmartDashboard.putNumber("Shooter Speed", shooterSpeed);
+    SmartDashboard.putNumber(Constants.DashboardConstants.DASHBOARD_SHOOTER_SPEED_KEY, shooterSpeed);
   }
 
   @Override

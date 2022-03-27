@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Climber;
@@ -16,7 +15,6 @@ public class ClimbCommand extends CommandBase {
   public ClimbCommand(Climber climber) {
     this.climber = climber;
     addRequirements(this.climber);
-  //  SmartDashboard.putNumber("DEBUG Climb", Constants.BehaviorConstants.CLIMBER_SPEED); // DEBUG
   }
 
   @Override
@@ -26,7 +24,6 @@ public class ClimbCommand extends CommandBase {
   @Override
   public void execute() {
     climber.runMotor(Constants.BehaviorConstants.CLIMBER_SPEED);
- // climber.runMotor(SmartDashboard.getNumber("DEBUG Climb", Constants.BehaviorConstants.CLIMBER_SPEED)); // DEBUG
   }
 
   @Override

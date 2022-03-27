@@ -20,6 +20,10 @@ public class Intake extends SubsystemBase {
     troughMotor.setInverted(true);
   }
 
+  @Override
+  public void periodic() {
+  }
+
   public void set(double speed) {
     intakeMotor.set(speed);
     troughMotor.set(speed);
