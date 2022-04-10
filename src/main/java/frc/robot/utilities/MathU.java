@@ -4,7 +4,6 @@
 
 package frc.robot.utilities;
 
-/** Add your docs here. */
 public class MathU {
 
   /**

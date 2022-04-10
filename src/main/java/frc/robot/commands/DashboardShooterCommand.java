@@ -6,38 +6,35 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 
 public class DashboardShooterCommand extends CommandBase {
 
   private final Shooter shooter;
 
-  /** Creates a new Shootercommand. */
   public DashboardShooterCommand(Shooter shooter) {
     this.shooter = shooter;
     addRequirements(this.shooter);
+    SmartDashboard.putNumber(Constants.DashboardConstants.DASHBOARD_SHOOTER_SPEED_KEY, 0.0);
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double shooterSpeed = SmartDashboard.getNumber("Shooter Speed", 0.0);
-    shooter.set(shooterSpeed);
-    SmartDashboard.putNumber("Shooter Speed", shooterSpeed);
+    double shooterSpeed = SmartDashboard.getNumber(Constants.DashboardConstants.DASHBOARD_SHOOTER_SPEED_KEY, 0.0);
+    shooter.setPercentOutput(shooterSpeed);
+    SmartDashboard.putNumber(Constants.DashboardConstants.DASHBOARD_SHOOTER_SPEED_KEY, shooterSpeed);
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shooter.set(0.0);
+    shooter.setPercentOutput(0.0);
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;

@@ -11,11 +11,11 @@ import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Drivetrain extends SubsystemBase {
+
     private final MecanumDrive mecanumDrive;
 
     private final RelativeEncoder frontLeftEncoder;
@@ -52,7 +52,6 @@ public class Drivetrain extends SubsystemBase {
         backLeftEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
         backRightEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
 
-        
         gyro = new ADXRS450_Gyro();
         gyro.calibrate();
 
@@ -63,7 +62,7 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void drive(float ySpeed, float xSpeed, float zRotation, boolean fieldRelative) {
-       if (fieldRelative) {
+        if (fieldRelative) {
             mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation, -gyro.getAngle());
         } else {
             mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation);
@@ -73,12 +72,6 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         mecanumDriveOdometry.update(gyro.getRotation2d(), getCurrentWheelSpeeds());
-        SmartDashboard.putData("Mecanum Drive", mecanumDrive);
-        SmartDashboard.putNumber("Front Left Encoder", frontLeftEncoder.getPosition());
-        SmartDashboard.putNumber("Front Right Encoder", frontRightEncoder.getPosition());
-        SmartDashboard.putNumber("Back Left Encoder", backLeftEncoder.getPosition());
-        SmartDashboard.putNumber("Back Right Encoder", backRightEncoder.getPosition());
-        SmartDashboard.putNumber("Gyro", gyro.getAngle());
     }
 
     public Pose2d getPose() {
@@ -109,7 +102,6 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public MecanumDriveWheelSpeeds getCurrentWheelSpeeds() {
-        // TODO: fix with setConversionFactor
         return new MecanumDriveWheelSpeeds(frontLeftEncoder.getVelocity(),
                 frontRightEncoder.getVelocity(), backLeftEncoder.getVelocity(), backRightEncoder.getVelocity());
     }

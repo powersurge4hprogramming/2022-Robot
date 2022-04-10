@@ -10,16 +10,22 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Intake extends SubsystemBase {
+
   private final CANSparkMax intakeMotor;
   private final CANSparkMax troughMotor;
 
   public Intake(int intakePort, int troughPort) {
     intakeMotor = new CANSparkMax(intakePort, MotorType.kBrushed);
     troughMotor = new CANSparkMax(troughPort, MotorType.kBrushed);
+    troughMotor.setInverted(true);
+  }
+
+  @Override
+  public void periodic() {
   }
 
   public void set(double speed) {
     intakeMotor.set(speed);
-    troughMotor.set(speed*-1);
+    troughMotor.set(speed);
   }
 }

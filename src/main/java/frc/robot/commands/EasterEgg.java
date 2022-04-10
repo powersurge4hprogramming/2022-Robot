@@ -4,36 +4,40 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.data_structs.LimeVision;
 import frc.robot.subsystems.Shooter;
 
-public class VisionShooterCommand extends CommandBase {
+public class EasterEgg extends CommandBase {
+  Shooter shooter;
+  int count = 1000;
 
-  private final Shooter shooter;
-
-  public VisionShooterCommand(Shooter shooter) {
+  /*
+   * Talon FXs to play music through.
+   * More complex music MIDIs will contain several tracks, requiring multiple
+   * instruments.
+   */
+  public EasterEgg(Shooter shooter) {
     this.shooter = shooter;
     addRequirements(shooter);
   }
 
   @Override
   public void initialize() {
+    shooter.loadMusic();
   }
 
   @Override
   public void execute() {
-    double distance = LimeVision.targetDistance();
-    double setSpeed = 1911 * distance + 8948;
-    SmartDashboard.putNumber("Vision Shooter Speed", setSpeed);
-    shooter.setVelocity(setSpeed);
+    if (count == 0) {
+      shooter.playMusic();
+    } else if (count > 0) {
+      count--;
+    }
   }
 
   @Override
   public void end(boolean interrupted) {
-    shooter.setPercentOutput(0.0);
-    SmartDashboard.putNumber("Vision Shooter Speed", 0.0);
+    shooter.cancelMusic();
   }
 
   @Override

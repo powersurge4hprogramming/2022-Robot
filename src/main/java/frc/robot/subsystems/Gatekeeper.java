@@ -9,10 +9,12 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Gatekeeper extends SubsystemBase {
+
   private final CANSparkMax gatekeeperMotor;
 
   public Gatekeeper(int gatekeeperPort) {
     gatekeeperMotor = new CANSparkMax(gatekeeperPort, MotorType.kBrushed);
+    gatekeeperMotor.setInverted(true);
   }
 
   @Override
@@ -20,6 +22,6 @@ public class Gatekeeper extends SubsystemBase {
   }
 
   public void set(double speed) {
-    gatekeeperMotor.set(speed*-1);
+    gatekeeperMotor.set(speed);
   }
 }

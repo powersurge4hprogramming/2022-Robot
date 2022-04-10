@@ -7,6 +7,7 @@ package frc.robot.data_structs;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.Constants;
 
 public class LimeVision {
 
@@ -74,14 +75,14 @@ public class LimeVision {
     // All measurements in METERS and RADIANS - see
     // https://docs.limelightvision.io/en/latest/cs_estimating_distance.html
 
-    // Limelight height off of ground, TODO
-    double h1 = 1.016;
+    // Limelight height off of ground, DONE
+    double h1 = Constants.VisionConstants.DIST_LIME_HEIGHT;
 
     // Upper Hub height off of ground, DONE
-    double h2 = 2.64;
+    double h2 = Constants.VisionConstants.DIST_HUB_HEIGHT;
 
-    // Limelight mounted angle from horizontal, TODO
-    double a1 = Math.toRadians(0);
+    // Limelight mounted angle from horizontal, DONE
+    double a1 = Math.toRadians(Constants.VisionConstants.DIST_LIME_MOUNT_ANGLE);
 
     // Limelight angle from mounted to target
     double a2 = Math.toRadians(getYOffsetAngle());

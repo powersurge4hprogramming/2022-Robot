@@ -19,24 +19,20 @@ public class DriveCommand extends CommandBase {
   private final SlewRateLimiter xLimiter;
   private final SlewRateLimiter zLimiter;
 
-  /** Creates a new DriveCommand. */
   public DriveCommand(Drivetrain drivetrain, GenericHID driveJoystick) {
     this.drivetrain = drivetrain;
     this.driveJoystick = driveJoystick;
     yLimiter = new SlewRateLimiter(Constants.InputConstants.DRIVER_LATERAL_SLEW);
     xLimiter = new SlewRateLimiter(Constants.InputConstants.DRIVER_LATERAL_SLEW);
     zLimiter = new SlewRateLimiter(Constants.InputConstants.DRIVER_TWIST_SLEW);
-    addRequirements(drivetrain);
-    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(this.drivetrain);
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     drivetrain.resetEncoders();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     double xAxis = driveJoystick.getRawAxis(Constants.InputConstants.DRIVER_JOYSTICK_X_AXIS);
@@ -50,17 +46,14 @@ public class DriveCommand extends CommandBase {
     yAxis = yLimiter.calculate(MathU.squareInput(yAxis) * scale);
     zAxis = zLimiter.calculate(MathU.squareInput(zAxis) * scale);
 
-    // y x z
     drivetrain.drive((float) yAxis, (float) xAxis, (float) zAxis, false);
   }
 
-  // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     drivetrain.drive(0, 0, 0, false);
   }
 
-  // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     return false;
