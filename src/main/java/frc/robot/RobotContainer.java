@@ -117,7 +117,7 @@ public class RobotContainer {
                 new POVButton(m_operatorJoystick, 315)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(1.0), m_shooter));
                 new POVButton(m_operatorJoystick, 180)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.415), m_shooter));
+                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.35), m_shooter));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.Shooter_Speed)
                                 .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.89), m_shooter));

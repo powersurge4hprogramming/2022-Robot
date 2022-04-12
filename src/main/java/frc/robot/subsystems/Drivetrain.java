@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -39,6 +40,13 @@ public class Drivetrain extends SubsystemBase {
         frontRightSpark = new CANSparkMax(frontRightMotorControl, MotorType.kBrushless);
         backRightSpark = new CANSparkMax(backRightMotorControl, MotorType.kBrushless);
         backLeftSpark = new CANSparkMax(backLeftMotorControl, MotorType.kBrushless);
+
+        frontLeftSpark.setIdleMode(IdleMode.kCoast);
+        frontRightSpark.setIdleMode(IdleMode.kCoast);
+        backLeftSpark.setIdleMode(IdleMode.kCoast);
+        backRightSpark.setIdleMode(IdleMode.kCoast);
+
+
         frontRightSpark.setInverted(true);
         backRightSpark.setInverted(true);
 
