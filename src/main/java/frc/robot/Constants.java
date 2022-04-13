@@ -36,7 +36,7 @@ public final class Constants {
                                 new Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2),
                                 new Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2));
 
-                public static final double DIST_PER_COUNT_NEO = (0.1524 * Math.PI / 8.357);
+                public static final double DIST_PER_COUNT_NEO = (0.1524 * Math.PI / 8.45);
 
                 // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
                 // These characterization values MUST be determined either experimentally or

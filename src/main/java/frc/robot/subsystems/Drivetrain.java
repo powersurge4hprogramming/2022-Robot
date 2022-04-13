@@ -46,7 +46,6 @@ public class Drivetrain extends SubsystemBase {
         backLeftSpark.setIdleMode(IdleMode.kCoast);
         backRightSpark.setIdleMode(IdleMode.kCoast);
 
-
         frontRightSpark.setInverted(true);
         backRightSpark.setInverted(true);
 
@@ -69,14 +68,6 @@ public class Drivetrain extends SubsystemBase {
         mecanumDrive = new MecanumDrive(frontLeftSpark, backLeftSpark, frontRightSpark, backRightSpark);
     }
 
-    public void drive(float ySpeed, float xSpeed, float zRotation, boolean fieldRelative) {
-        if (fieldRelative) {
-            mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation, -gyro.getAngle());
-        } else {
-            mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation);
-        }
-    }
-
     @Override
     public void periodic() {
         mecanumDriveOdometry.update(gyro.getRotation2d(), getCurrentWheelSpeeds());
@@ -94,24 +85,32 @@ public class Drivetrain extends SubsystemBase {
         backRightEncoder.setPosition(0);
     }
 
+    public void drive(float ySpeed, float xSpeed, float zRotation, boolean fieldRelative) {
+        if (fieldRelative) {
+            mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation, -gyro.getAngle());
+        } else {
+            mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation);
+        }
+    }
+
+    public void setDriveMotorControllersVolts(MecanumDriveMotorVoltages volts) {
+        frontLeftSpark.setVoltage(volts.frontLeftVoltage);
+        frontRightSpark.setVoltage(volts.frontRightVoltage);
+        backRightSpark.setVoltage(volts.rearRightVoltage);
+        backLeftSpark.setVoltage(volts.rearLeftVoltage);
+    }
+
+    public MecanumDriveWheelSpeeds getCurrentWheelSpeeds() {
+        return new MecanumDriveWheelSpeeds(frontLeftEncoder.getVelocity(),
+                frontRightEncoder.getVelocity(), backLeftEncoder.getVelocity(), backRightEncoder.getVelocity());
+    }
+
     public void resetEncoders() {
         frontLeftEncoder.setPosition(0);
         frontRightEncoder.setPosition(0);
         backLeftEncoder.setPosition(0);
         backRightEncoder.setPosition(0);
         gyro.reset();
-    }
-
-    public void setDriveMotorControllersVolts(MecanumDriveMotorVoltages volts) {
-        frontLeftSpark.setVoltage(volts.frontLeftVoltage);
-        frontRightSpark.setVoltage(volts.rearLeftVoltage);
-        backRightSpark.setVoltage(volts.frontRightVoltage);
-        backLeftSpark.setVoltage(volts.rearRightVoltage);
-    }
-
-    public MecanumDriveWheelSpeeds getCurrentWheelSpeeds() {
-        return new MecanumDriveWheelSpeeds(frontLeftEncoder.getVelocity(),
-                frontRightEncoder.getVelocity(), backLeftEncoder.getVelocity(), backRightEncoder.getVelocity());
     }
 
 }
