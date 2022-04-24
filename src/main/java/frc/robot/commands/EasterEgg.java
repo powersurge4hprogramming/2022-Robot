@@ -5,31 +5,26 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.DjKaleb;
 
 public class EasterEgg extends CommandBase {
-  Shooter shooter;
-  int count = 1000;
+  private final DjKaleb dj;
+  private int count = 1000;
+  private final String musicPath = "rick-roll.chrp";
 
-  /*
-   * Talon FXs to play music through.
-   * More complex music MIDIs will contain several tracks, requiring multiple
-   * instruments.
-   */
-  public EasterEgg(Shooter shooter) {
-    this.shooter = shooter;
-    addRequirements(shooter);
+  public EasterEgg(DjKaleb dj) {
+    this.dj = dj;
   }
 
   @Override
   public void initialize() {
-    shooter.loadMusic();
+    dj.loadMusic(musicPath);
   }
 
   @Override
   public void execute() {
     if (count == 0) {
-      shooter.playMusic();
+      dj.playMusic();
     } else if (count > 0) {
       count--;
     }
@@ -37,7 +32,7 @@ public class EasterEgg extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
-    shooter.cancelMusic();
+    dj.cancelMusic();
   }
 
   @Override
