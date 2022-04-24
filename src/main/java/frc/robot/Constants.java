@@ -36,7 +36,7 @@ public final class Constants {
                                 new Translation2d(-WHEEL_BASE / 2, TRACK_WIDTH / 2),
                                 new Translation2d(-WHEEL_BASE / 2, -TRACK_WIDTH / 2));
 
-                public static final double DIST_PER_COUNT_NEO = (0.1524 * Math.PI / 8.357);
+                public static final double DIST_PER_COUNT_NEO = (0.1524 * Math.PI / 8.45);
 
                 // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
                 // These characterization values MUST be determined either experimentally or
@@ -44,14 +44,14 @@ public final class Constants {
                 // for *your* robot's drive.
                 // The SysId tool provides a convenient method for obtaining these values for
                 // your robot.
-                public static final SimpleMotorFeedforward MOTOR_FEED_FORWARD = new SimpleMotorFeedforward(1, 0.8,
-                                0.15);
+                public static final SimpleMotorFeedforward MOTOR_FEED_FORWARD = new SimpleMotorFeedforward(0.1962, 2.2131,
+                0.41191);
 
                 // Example value only - as above, this must be tuned for your drive!
-                public static final double FL_VELOCITY = 0.5;
-                public static final double RL_VELOCITY = 0.5;
-                public static final double FR_VELOCITY = 0.5;
-                public static final double RR_VELOCITY = 0.5;
+                public static final double FL_VELOCITY = 3.0239;
+                public static final double RL_VELOCITY = 3.0239;
+                public static final double FR_VELOCITY = 3.0239;
+                public static final double RR_VELOCITY = 3.0239;
 
                 public static final double MAX_SPEED_M_PER_SEC = 3;
                 public static final double MAX_ACCEL_M_PER_SEC_SQUARED = 3;
