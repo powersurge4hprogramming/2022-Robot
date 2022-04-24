@@ -47,7 +47,7 @@ public final class Constants {
                 public static final SimpleMotorFeedforward MOTOR_FEED_FORWARD = new SimpleMotorFeedforward(0.1962, 2.2131,
                 0.41191);
 
-                // Example value only - as above, this must be tuned for your drive!
+                // TODO Sysid Values
                 public static final double FL_VELOCITY = 3.0239;
                 public static final double RL_VELOCITY = 3.0239;
                 public static final double FR_VELOCITY = 3.0239;
@@ -69,6 +69,7 @@ public final class Constants {
 
         public static final class VisionConstants {
 
+                // TODO SysId
                 public static final double VISION_PID_P = 0.4;
                 public static final double VISION_PID_I = 0.1;
                 public static final double VISION_PID_D = 0;
@@ -102,10 +103,10 @@ public final class Constants {
 
         public final static class ShooterConstants {
 
-                public static final double TALON_KP = 0.18;
-                public static final double TALON_KI = 0.002;
-                public static final double TALON_KD = 4;
-                public static final double TALON_KF = 1023.0 / 21700.0; // Second number is velocity units at 100%
+                public static final double TALON_KP = 0.18; // 0.18
+                public static final double TALON_KI = 0.002; // 0.002
+                public static final double TALON_KD = 4; // 4
+                public static final double TALON_KF = 1023.0 / 20000.0; // Second number is velocity units at general % output
 
                 public static final int TALON_TIMEOUT = 30;
 
@@ -155,7 +156,7 @@ public final class Constants {
         }
 
         public final static class DashboardConstants {
-                public static final String DASHBOARD_SHOOTER_SPEED_KEY = "Shooter Speed";
+                public static final String DASHBOARD_SHOOTER_SPEED_KEY = "Set Shooter Vel"; // "Shooter Speed"
         }
 
 }
