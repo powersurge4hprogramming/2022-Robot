@@ -9,8 +9,8 @@ import frc.robot.subsystems.DjKaleb;
 
 public class EasterEgg extends CommandBase {
   private final DjKaleb dj;
-  private int count = 1000;
-  private final String musicPath = "rick-roll.chrp";
+  private int count = 30;
+  private final String musicPath = "star-wars2.chrp";
 
   public EasterEgg(DjKaleb dj) {
     this.dj = dj;
@@ -24,8 +24,10 @@ public class EasterEgg extends CommandBase {
   @Override
   public void execute() {
     if (count == 0) {
-      dj.playMusic();
-    } else if (count > 0) {
+      System.out.println(dj.playMusic());
+      System.out.println("done done done");
+      count--;
+    } else if (count >=0) {
       count--;
     }
   }

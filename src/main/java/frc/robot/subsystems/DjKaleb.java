@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.music.Orchestra;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -16,15 +17,14 @@ public class DjKaleb extends SubsystemBase {
     orchestra = new Orchestra();
     orchestra.addInstrument(shooter.getTalon());
     orchestra.addInstrument(climber.getTalon());
-
   }
 
   public void loadMusic(String filePath) {
     orchestra.loadMusic(filePath);
   }
 
-  public void playMusic() {
-    orchestra.play();
+  public ErrorCode playMusic() {
+    return orchestra.play();
   }
 
   public void cancelMusic() {
