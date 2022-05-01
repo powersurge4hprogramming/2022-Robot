@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DjKaleb;
 
 public class EasterEgg extends CommandBase {
+  // In addition to having DjKaleb, it also has access to the subsystems whose motors are being used as instruments.
+  // This will cause it to override the behaviors of the default commands, and avoid issues of unsafe code
   private final DjKaleb dj;
   private int count = 30;
   private final String musicPath = "star-wars2.chrp";
@@ -25,7 +27,6 @@ public class EasterEgg extends CommandBase {
   public void execute() {
     if (count == 0) {
       System.out.println(dj.playMusic());
-      System.out.println("done done done");
       count--;
     } else if (count >=0) {
       count--;

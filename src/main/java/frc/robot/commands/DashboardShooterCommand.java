@@ -26,8 +26,7 @@ public class DashboardShooterCommand extends CommandBase {
   @Override
   public void execute() {
     double shooterSpeed = SmartDashboard.getNumber(Constants.DashboardConstants.DASHBOARD_SHOOTER_SPEED_KEY, 0.0);
-  //  shooter.setPercentOutput(shooterSpeed);
-  shooter.setVelocity(shooterSpeed);
+    shooter.setPercentOutput(shooterSpeed);
     SmartDashboard.putNumber(Constants.DashboardConstants.DASHBOARD_SHOOTER_SPEED_KEY, shooterSpeed);
   }
 

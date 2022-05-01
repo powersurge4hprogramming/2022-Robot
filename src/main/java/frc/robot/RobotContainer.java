@@ -40,6 +40,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -71,7 +72,9 @@ public class RobotContainer {
                         Constants.MotorConstants.CLIMB_RELEASE_SERVO_PORT);
         private final ClimbRelease m_climbRelease = new ClimbRelease(Constants.MotorConstants.CLIMB_RELEASE_SERVO_PORT,
                         Constants.MotorConstants.FINGER_RELEASE_SERVO_PORT);
-        private final DjKaleb m_djKaleb = new DjKaleb(m_shooter, m_climber); // Note: Avoid doing this
+
+        private final DjKaleb m_djKaleb = new DjKaleb(new SubsystemBase[] {m_shooter, m_climber},
+                        m_shooter.getTalon(), m_climber.getTalon()); // Note: Avoid doing this
 
         // Commands
         private final DriveCommand m_teleopCommand = new DriveCommand(m_drivetrain, m_driveJoystick);
