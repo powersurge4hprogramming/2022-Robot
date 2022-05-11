@@ -109,7 +109,7 @@ public class RobotContainer {
                                 .whenHeld(new IntakeCommand(m_Intake));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.MECH_AIM_BUTTON)
-                                .whenHeld(new ParallelCommandGroup(// new VisionShooterCommand(m_shooter),
+                                .whenHeld(new ParallelCommandGroup( new VisionShooterCommand(m_shooter),
                                                 new MechAimCommand(m_drivetrain)));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.GATEKEEPER_ALLOW_BUTTON)
