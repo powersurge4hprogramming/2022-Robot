@@ -59,6 +59,11 @@ public class Shooter extends SubsystemBase {
     shooterMotor.set(TalonFXControlMode.PercentOutput, speed);
   }
 
+  /// 0 to 1
+  public double getOutput() {
+    return shooterMotor.getMotorOutputPercent();
+  }
+
   public WPI_TalonFX getTalon() {
     return shooterMotor;
   }

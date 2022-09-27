@@ -18,7 +18,8 @@ public class DjKaleb extends SubsystemBase {
   private Orchestra orchestra;
   private final List<SubsystemBase> subsystems;
 
-  // TODO - Change this to generic motors, and make it a collection instead so you can pass in as many as you want
+  // TODO - Change this to generic motors, and make it a collection instead so you
+  // can pass in as many as you want
   public DjKaleb(Shooter shooter, Climber climber) {
     orchestra = new Orchestra();
     subsystems = new ArrayList<>();
@@ -40,7 +41,7 @@ public class DjKaleb extends SubsystemBase {
   }
 
   public void loadMusic(String filePath) {
-    orchestra.loadMusic(filePath);
+    System.out.println(orchestra.loadMusic(filePath));
   }
 
   public ErrorCode playMusic() {

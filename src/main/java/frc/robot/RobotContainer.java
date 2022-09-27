@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.EasterEgg;
+import frc.robot.commands.MusicCommand;
 import frc.robot.commands.GatekeeperCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.LimeReader;
@@ -145,8 +145,8 @@ public class RobotContainer {
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.FINGER_RELEASE_BUTTON)
                                 .whenPressed(() -> m_climbRelease.releaseFinger(), m_climbRelease);
 
-                new JoystickButton(m_operatorJoystick, Constants.InputConstants.EASTER_EGG)
-                                .whenHeld(new EasterEgg(m_djKaleb));
+                new JoystickButton(m_operatorJoystick, Constants.InputConstants.MUSIC_CONTROL_BUTTON)
+                                .whenHeld(new MusicCommand(m_djKaleb, "elise.chrp"));
 
         }
 

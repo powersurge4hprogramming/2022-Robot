@@ -7,15 +7,18 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DjKaleb;
 
-public class EasterEgg extends CommandBase {
-  // In addition to having DjKaleb, it also has access to the subsystems whose motors are being used as instruments.
-  // This will cause it to override the behaviors of the default commands, and avoid issues of unsafe code
+public class MusicCommand extends CommandBase {
+  // In addition to having DjKaleb, it also has access to the subsystems whose
+  // motors are being used as instruments.
+  // This will cause it to override the behaviors of the default commands, and
+  // avoid issues of unsafe code
   private final DjKaleb dj;
-  private int count = 30;
-  private final String musicPath = "star-wars2.chrp";
+  private int count = 30; // Basically a timer
+  private final String musicPath;
 
-  public EasterEgg(DjKaleb dj) {
+  public MusicCommand(DjKaleb dj, String musicPath) {
     this.dj = dj;
+    this.musicPath = musicPath;
   }
 
   @Override
@@ -28,8 +31,9 @@ public class EasterEgg extends CommandBase {
     if (count == 0) {
       System.out.println(dj.playMusic());
       count--;
-    } else if (count >=0) {
+    } else if (count >= 0) {
       count--;
+
     }
   }
 

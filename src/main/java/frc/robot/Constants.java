@@ -151,12 +151,12 @@ public final class Constants {
                 public static final int FINGER_RELEASE_BUTTON = 10;
 
                 public static final int Shooter_Speed = 7;
-                public static final int EASTER_EGG = 8;
+                public static final int MUSIC_CONTROL_BUTTON = 8;
 
         }
 
         public final static class DashboardConstants {
-                public static final String DASHBOARD_SHOOTER_SPEED_KEY = "Shooter Speed"; // "Shooter Speed"
+                public static final String DASHBOARD_SHOOTER_SPEED_KEY = "Shooter Speed";
         }
 
 }
