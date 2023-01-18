@@ -7,7 +7,6 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Gatekeeper extends SubsystemBase {
@@ -17,14 +16,10 @@ public class Gatekeeper extends SubsystemBase {
   public Gatekeeper(int gatekeeperPort) {
     gatekeeperMotor = new CANSparkMax(gatekeeperPort, MotorType.kBrushed);
     gatekeeperMotor.setInverted(true);
-    SmartDashboard.putNumber("TEST GATE", 0.0);
   }
 
   @Override
   public void periodic() {
-    double shooterSpeed = SmartDashboard.getNumber("TEST GATE", 0.0);
-    gatekeeperMotor.set(shooterSpeed);
-    SmartDashboard.putNumber("TEST GATE", shooterSpeed);
   }
 
   public void set(double speed) {

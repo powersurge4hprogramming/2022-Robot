@@ -6,11 +6,8 @@ package frc.robot;
 
 import java.util.List;
 
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
@@ -18,7 +15,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.EasterEgg;
+import frc.robot.commands.MusicCommand;
 import frc.robot.commands.GatekeeperCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.LimeReader;
@@ -27,19 +24,19 @@ import frc.robot.commands.VisionShooterCommand;
 import frc.robot.commands.DashboardShooterCommand;
 import frc.robot.subsystems.ClimbRelease;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.DjKaleb;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Gatekeeper;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.utilities.AutoTemplate;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.MecanumControllerCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 
@@ -71,6 +68,9 @@ public class RobotContainer {
         private final ClimbRelease m_climbRelease = new ClimbRelease(Constants.MotorConstants.CLIMB_RELEASE_SERVO_PORT,
                         Constants.MotorConstants.FINGER_RELEASE_SERVO_PORT);
 
+        private final DjKaleb m_djKaleb = new DjKaleb(new SubsystemBase[] {m_shooter, m_climber},
+                        m_shooter.getTalon(), m_climber.getTalon()); // Note: Avoid doing this
+
         // Commands
         private final DriveCommand m_teleopCommand = new DriveCommand(m_drivetrain, m_driveJoystick);
         private final DashboardShooterCommand m_shooterCommand = new DashboardShooterCommand(m_shooter);
@@ -101,47 +101,47 @@ public class RobotContainer {
          */
         private void configureButtonBindings() {
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.INTAKE_BUTTON)
-                                .whenHeld(new IntakeCommand(m_Intake));
+                                .whileTrue(new IntakeCommand(m_Intake));
 
-                new JoystickButton(m_operatorJoystick, Constants.InputConstants.MECH_AIM_BUTTON)
-                                .whenHeld(new ParallelCommandGroup(// new VisionShooterCommand(m_shooter),
+               new JoystickButton(m_operatorJoystick, Constants.InputConstants.MECH_AIM_BUTTON)
+                                .whileTrue(new ParallelCommandGroup( new VisionShooterCommand(m_shooter),
                                                 new MechAimCommand(m_drivetrain)));
-
+            
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.GATEKEEPER_ALLOW_BUTTON)
-                                .whenPressed(
+                                .onTrue(
                                                 new GatekeeperCommand(m_gatekeeper)
                                                                 .withTimeout(Constants.BehaviorConstants.GATEKEEPER_ALLOW_TIME));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.CLIMB_BUTTON)
-                                .whenHeld(new ClimbCommand(m_climber));
+                                .whileTrue(new ClimbCommand(m_climber));
 
                 // Shooter presets
                 new POVButton(m_operatorJoystick, 0)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.665), m_shooter));
+                                .whileTrue(new RunCommand(() -> m_shooter.setPercentOutput(0.665), m_shooter));
                 new POVButton(m_operatorJoystick, 90)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.95), m_shooter));
+                                .whileTrue(new RunCommand(() -> m_shooter.setPercentOutput(0.95), m_shooter));
                 new POVButton(m_operatorJoystick, 270)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.77), m_shooter));
+                                .whileTrue(new RunCommand(() -> m_shooter.setPercentOutput(0.77), m_shooter));
                 new POVButton(m_operatorJoystick, 45)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.60), m_shooter));
+                                .whileTrue(new RunCommand(() -> m_shooter.setPercentOutput(0.60), m_shooter));
                 new POVButton(m_operatorJoystick, 225)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.81), m_shooter));
+                                .whileTrue(new RunCommand(() -> m_shooter.setPercentOutput(0.81), m_shooter));
                 new POVButton(m_operatorJoystick, 315)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(1.0), m_shooter));
+                                .whileTrue(new RunCommand(() -> m_shooter.setPercentOutput(1.0), m_shooter));
                 new POVButton(m_operatorJoystick, 180)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.35), m_shooter));
+                                .whileTrue(new RunCommand(() -> m_shooter.setPercentOutput(0.35), m_shooter));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.Shooter_Speed)
-                                .whenHeld(new RunCommand(() -> m_shooter.setPercentOutput(0.89), m_shooter));
+                                .whileTrue(new RunCommand(() -> m_shooter.setPercentOutput(0.89), m_shooter));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.CLIMB_RELEASE_BUTTON)
-                                .whenPressed(() -> m_climbRelease.releaseClimber(), m_climbRelease);
+                                .onTrue(new RunCommand(() -> m_climbRelease.releaseClimber(), m_climbRelease));
 
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.FINGER_RELEASE_BUTTON)
-                                .whenPressed(() -> m_climbRelease.releaseFinger(), m_climbRelease);
+                                .onTrue(new RunCommand(() -> m_climbRelease.releaseFinger(), m_climbRelease));
 
-                new JoystickButton(m_operatorJoystick, Constants.InputConstants.EASTER_EGG)
-                                .whenHeld(new EasterEgg(m_shooter));
+                new JoystickButton(m_operatorJoystick, Constants.InputConstants.MUSIC_CONTROL_BUTTON)
+                                .whileTrue(new MusicCommand(m_djKaleb, "elise.chrp"));
 
         }
 

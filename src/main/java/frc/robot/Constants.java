@@ -103,10 +103,10 @@ public final class Constants {
 
         public final static class ShooterConstants {
 
-                public static final double TALON_KP = 0.18; // 0.18
-                public static final double TALON_KI = 0.002; // 0.002
-                public static final double TALON_KD = 4; // 4
-                public static final double TALON_KF = 1023.0 / 20000.0; // Second number is velocity units at general % output
+                public static final double TALON_KP = 0.0; // 0.18
+                public static final double TALON_KI = 0.000; // 0.002
+                public static final double TALON_KD = 0; // 4
+                public static final double TALON_KF = (1*1023.0)/22071.0; // Second number is velocity units at general % output
 
                 public static final int TALON_TIMEOUT = 30;
 
@@ -140,23 +140,34 @@ public final class Constants {
                 public static final double DRIVER_LATERAL_SLEW = 5;
                 public static final double DRIVER_TWIST_SLEW = 5;
 
-                public static final int INTAKE_BUTTON = 1;
+                //public static final int INTAKE_BUTTON = 1;
+                public static final int INTAKE_BUTTON = 2;
+
                 public static final int MECH_AIM_BUTTON = 5;
 
-                public static final int GATEKEEPER_ALLOW_BUTTON = 2;
 
-                public static final int CLIMB_BUTTON = 11;
+                //public static final int GATEKEEPER_ALLOW_BUTTON = 2;
+                public static final int GATEKEEPER_ALLOW_BUTTON = 4; 
 
-                public static final int CLIMB_RELEASE_BUTTON = 9;
-                public static final int FINGER_RELEASE_BUTTON = 10;
+                //public static final int CLIMB_BUTTON = 11;
+                public static final int CLIMB_BUTTON = 1;
 
+                //public static final int CLIMB_RELEASE_BUTTON = 9;
+                public static final int CLIMB_RELEASE_BUTTON = 3;
+
+                //public static final int FINGER_RELEASE_BUTTON = 10;
+                public static final int FINGER_RELEASE_BUTTON = 7;
+
+                // This is the line that conflicts with the finger release
                 public static final int Shooter_Speed = 7;
-                public static final int EASTER_EGG = 8;
+
+                //public static final int MUSIC_CONTROL_BUTTON = 8;
+                public static final int MUSIC_CONTROL_BUTTON = 10;
 
         }
 
         public final static class DashboardConstants {
-                public static final String DASHBOARD_SHOOTER_SPEED_KEY = "Set Shooter Vel"; // "Shooter Speed"
+                public static final String DASHBOARD_SHOOTER_SPEED_KEY = "Shooter Speed";
         }
 
 }

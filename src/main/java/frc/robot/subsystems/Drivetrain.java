@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.MecanumDriveMotorVoltages;
 import edu.wpi.first.math.kinematics.MecanumDriveOdometry;
+import edu.wpi.first.math.kinematics.MecanumDriveWheelPositions;
 import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -63,14 +64,14 @@ public class Drivetrain extends SubsystemBase {
         gyro.calibrate();
 
         mecanumDriveOdometry = new MecanumDriveOdometry(Constants.DriveConstants.DRIVE_KINEMATICS,
-                gyro.getRotation2d());
+                gyro.getRotation2d(), getCurrentWheelPositions());
 
         mecanumDrive = new MecanumDrive(frontLeftSpark, backLeftSpark, frontRightSpark, backRightSpark);
     }
 
     @Override
     public void periodic() {
-        mecanumDriveOdometry.update(gyro.getRotation2d(), getCurrentWheelSpeeds());
+        mecanumDriveOdometry.update(gyro.getRotation2d(), getCurrentWheelPositions());
     }
 
     public Pose2d getPose() {
@@ -78,16 +79,16 @@ public class Drivetrain extends SubsystemBase {
     }
 
     public void resetOdometry(Pose2d pose) {
-        mecanumDriveOdometry.resetPosition(pose, gyro.getRotation2d());
+        mecanumDriveOdometry.resetPosition(gyro.getRotation2d(), getCurrentWheelPositions(), pose);
         frontLeftEncoder.setPosition(0);
         frontRightEncoder.setPosition(0);
         backLeftEncoder.setPosition(0);
         backRightEncoder.setPosition(0);
     }
 
-    public void drive(float ySpeed, float xSpeed, float zRotation, boolean fieldRelative) {
+    public void drive(double ySpeed, double xSpeed, double zRotation, boolean fieldRelative) {
         if (fieldRelative) {
-            mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation, -gyro.getAngle());
+            mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getRotation2d());
         } else {
             mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation);
         }
@@ -98,6 +99,11 @@ public class Drivetrain extends SubsystemBase {
         frontRightSpark.setVoltage(volts.frontRightVoltage);
         backRightSpark.setVoltage(volts.rearRightVoltage);
         backLeftSpark.setVoltage(volts.rearLeftVoltage);
+    }
+
+    public MecanumDriveWheelPositions getCurrentWheelPositions() {
+        return new MecanumDriveWheelPositions(frontLeftEncoder.getPosition(),
+                frontRightEncoder.getPosition(), backLeftEncoder.getPosition(), backRightEncoder.getPosition());
     }
 
     public MecanumDriveWheelSpeeds getCurrentWheelSpeeds() {
