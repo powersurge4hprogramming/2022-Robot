@@ -16,6 +16,10 @@ public class Climber extends SubsystemBase {
     this.climberMotor = new WPI_TalonFX(climberMotor);
   }
 
+  public WPI_TalonFX getTalon() {
+    return climberMotor;
+  }
+
   @Override
   public void periodic() {
   }

@@ -31,7 +31,9 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/ClimbRelease": "Subsystem",
       "/LiveWindow/Climber": "Subsystem",
+      "/LiveWindow/DjKaleb": "Subsystem",
       "/LiveWindow/Drivetrain": "Subsystem",
       "/LiveWindow/ExampleSubsystem": "Subsystem",
       "/LiveWindow/Gatekeeper": "Subsystem",

@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.EasterEgg;
+import frc.robot.commands.MusicCommand;
 import frc.robot.commands.GatekeeperCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.LimeReader;
@@ -27,6 +27,7 @@ import frc.robot.commands.VisionShooterCommand;
 import frc.robot.commands.DashboardShooterCommand;
 import frc.robot.subsystems.ClimbRelease;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.DjKaleb;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Gatekeeper;
 import frc.robot.subsystems.Intake;
@@ -39,6 +40,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -70,6 +72,9 @@ public class RobotContainer {
                         Constants.MotorConstants.CLIMB_RELEASE_SERVO_PORT);
         private final ClimbRelease m_climbRelease = new ClimbRelease(Constants.MotorConstants.CLIMB_RELEASE_SERVO_PORT,
                         Constants.MotorConstants.FINGER_RELEASE_SERVO_PORT);
+
+        private final DjKaleb m_djKaleb = new DjKaleb(new SubsystemBase[] {m_shooter, m_climber},
+                        m_shooter.getTalon(), m_climber.getTalon()); // Note: Avoid doing this
 
         // Commands
         private final DriveCommand m_teleopCommand = new DriveCommand(m_drivetrain, m_driveJoystick);
@@ -103,10 +108,10 @@ public class RobotContainer {
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.INTAKE_BUTTON)
                                 .whenHeld(new IntakeCommand(m_Intake));
 
-                new JoystickButton(m_operatorJoystick, Constants.InputConstants.MECH_AIM_BUTTON)
-                                .whenHeld(new ParallelCommandGroup(// new VisionShooterCommand(m_shooter),
+               new JoystickButton(m_operatorJoystick, Constants.InputConstants.MECH_AIM_BUTTON)
+                                .whenHeld(new ParallelCommandGroup( new VisionShooterCommand(m_shooter),
                                                 new MechAimCommand(m_drivetrain)));
-
+            
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.GATEKEEPER_ALLOW_BUTTON)
                                 .whenPressed(
                                                 new GatekeeperCommand(m_gatekeeper)
@@ -140,8 +145,8 @@ public class RobotContainer {
                 new JoystickButton(m_operatorJoystick, Constants.InputConstants.FINGER_RELEASE_BUTTON)
                                 .whenPressed(() -> m_climbRelease.releaseFinger(), m_climbRelease);
 
-                new JoystickButton(m_operatorJoystick, Constants.InputConstants.EASTER_EGG)
-                                .whenHeld(new EasterEgg(m_shooter));
+                new JoystickButton(m_operatorJoystick, Constants.InputConstants.MUSIC_CONTROL_BUTTON)
+                                .whenHeld(new MusicCommand(m_djKaleb, "elise.chrp"));
 
         }
 
