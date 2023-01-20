@@ -13,6 +13,7 @@ import edu.wpi.first.math.kinematics.MecanumDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -55,10 +56,10 @@ public class Drivetrain extends SubsystemBase {
         backLeftEncoder = backLeftSpark.getEncoder();
         backRightEncoder = backRightSpark.getEncoder();
 
-        frontLeftEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
-        frontRightEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
-        backLeftEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
-        backRightEncoder.setPositionConversionFactor(Constants.DriveConstants.DIST_PER_COUNT_NEO);
+        frontLeftEncoder.setPositionConversionFactor(Constants.DriveConstants.kEncoderDistancePerPulse);
+        frontRightEncoder.setPositionConversionFactor(Constants.DriveConstants.kEncoderDistancePerPulse);
+        backLeftEncoder.setPositionConversionFactor(Constants.DriveConstants.kEncoderDistancePerPulse);
+        backRightEncoder.setPositionConversionFactor(Constants.DriveConstants.kEncoderDistancePerPulse);
 
         gyro = new ADXRS450_Gyro();
         gyro.calibrate();
@@ -72,6 +73,14 @@ public class Drivetrain extends SubsystemBase {
     @Override
     public void periodic() {
         mecanumDriveOdometry.update(gyro.getRotation2d(), getCurrentWheelPositions());
+
+        SmartDashboard.putNumber("Encoder FL", frontLeftEncoder.getPosition());
+        SmartDashboard.putNumber("Encoder FR", frontRightEncoder.getPosition());
+        SmartDashboard.putNumber("Encoder BL", backLeftEncoder.getPosition());
+        SmartDashboard.putNumber("Encoder BR", backRightEncoder.getPosition());
+
+        
+
     }
 
     public Pose2d getPose() {
